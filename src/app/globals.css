@@ -282,6 +282,14 @@
     bottom: -10% !important;
   }
 
+  .hero-image-wrapper picture {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-end !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
   .hero-image-wrapper img,
   .hero-doctor-img {
     width: 100% !important;
