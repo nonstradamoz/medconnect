@@ -13,7 +13,7 @@ export default function FounderPage() {
         <div style={{ maxWidth: 1000, margin: "0 auto", padding: "0 1.5rem", textAlign: "center", position: "relative", zIndex: 10 }}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="med-badge" style={{ marginBottom: "2rem", background: "var(--gold-light)", color: "var(--gold-primary)" }}>
-              <Plus size={16} strokeWidth={3} /> THE VISIONARY
+              THE VISIONARY
             </div>
             <h1 className="med-heading" style={{ marginBottom: "1.5rem", fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>
               Meet Our <span style={{ color: "#017aaf" }}>Founder</span>

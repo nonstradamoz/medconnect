@@ -20,7 +20,7 @@ export function FAQ() {
         
         <div style={{ textAlign: "center", marginBottom: "4rem" }}>
           <div className="med-badge" style={{ marginBottom: "1.5rem" }}>
-            <Plus size={16} strokeWidth={3} /> FAQ
+            FAQ
           </div>
           <h2 className="med-heading" style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)" }}>
             Have Questions?<br /><span className="med-heading-highlight">We Have Answers.</span>

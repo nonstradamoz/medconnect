@@ -20,7 +20,7 @@ export function Services() {
         <div style={{ textAlign: "center", marginBottom: "4rem" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <div className="med-badge" style={{ marginBottom: "1.5rem" }}>
-              <Plus size={16} strokeWidth={3} /> MEDICAL SERVICES
+              MEDICAL SERVICES
             </div>
             <h2 className="med-heading" style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)" }}>
               Comprehensive<br /><span className="med-heading-highlight">Healthcare Services</span>

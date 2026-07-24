@@ -47,10 +47,10 @@ export function Navbar() {
             ].map(({ label, path }) => {
               const isActive = pathname === path;
               return (
-                <Link key={label} href={path} style={{ 
-                  fontWeight: 600, 
-                  fontSize: "0.95rem", 
-                  color: isActive ? "var(--blue-primary)" : "var(--text-dark)", 
+                <Link key={label} href={path} style={{
+                  fontWeight: 600,
+                  fontSize: "0.95rem",
+                  color: isActive ? "var(--blue-primary)" : "var(--text-dark)",
                   textDecoration: "none",
                   background: isActive ? "var(--blue-light)" : "transparent",
                   padding: "0.4rem 1rem",
@@ -74,7 +74,7 @@ export function Navbar() {
                 <ArrowUpRight size={16} strokeWidth={3} />
               </div>
             </Link>
-            
+
             {/* Mobile Menu Button */}
             <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -116,21 +116,21 @@ export function Navbar() {
                 { label: "Contact Us", path: "/contact" },
                 { label: "Patient Portal", path: "/portal" }
               ].map(({ label, path }) => (
-                <Link 
-                  key={label} 
-                  href={path} 
+                <Link
+                  key={label}
+                  href={path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  style={{ 
-                    fontWeight: 700, 
-                    fontSize: "1.5rem", 
-                    color: pathname === path ? "var(--blue-primary)" : "var(--text-dark)", 
-                    textDecoration: "none" 
+                  style={{
+                    fontWeight: 700,
+                    fontSize: "1.5rem",
+                    color: pathname === path ? "var(--blue-primary)" : "var(--text-dark)",
+                    textDecoration: "none"
                   }}
                 >
                   {label}
                 </Link>
               ))}
-              
+
               <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="med-button-primary" style={{ marginTop: "1rem" }}>
                 Book Appointment
               </Link>
@@ -211,7 +211,7 @@ function Hero() {
         {/* Left: Text */}
         <div className="hero-text">
 
-          {/* Animated badge */}
+          {/* Animated badge
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -222,7 +222,7 @@ function Hero() {
               <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#daa837" }} />
             </motion.div>
             <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "#daa837", letterSpacing: "0.08em" }}>TRUSTED GLOBAL HEALTHCARE</span>
-          </motion.div>
+          </motion.div> */}
 
           {/* Staggered heading */}
           <div style={{ marginBottom: "1.5rem" }}>
@@ -237,6 +237,7 @@ function Hero() {
                 <span className="med-heading" style={{
                   display: "block",
                   lineHeight: 1.1,
+                  fontSize: "clamp(3rem, 6vw, 5.5rem)",
                   color: word === "Healthcare" ? "#daa837" : "#ffffff",
                   textShadow: word === "Healthcare" ? "0 4px 20px rgba(218, 168, 55, 0.4)" : "none",
                 }}>
@@ -251,7 +252,7 @@ function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            style={{ fontSize: "1.2rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.6, marginBottom: "2.5rem", maxWidth: 450 }}
+            style={{ fontSize: "1.5rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.6, marginBottom: "2.5rem", maxWidth: 500 }}
           >
             Connecting patients with trusted doctors, hospitals, and personalized healthcare.
           </motion.p>
@@ -314,7 +315,7 @@ function ServicesPreview() {
 
         <div style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", marginBottom: "4rem" }}>
           <div className="med-badge" style={{ marginBottom: "1.5rem" }}>
-            <Plus size={16} strokeWidth={3} /> MEDICAL SERVICES
+            MEDICAL SERVICES
           </div>
           <h2 className="med-heading" style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)" }}>
             Comprehensive<br /><span className="med-heading-highlight">Healthcare Services</span>
@@ -364,7 +365,7 @@ function Testimonials() {
 
         <div style={{ marginBottom: "4rem" }}>
           <div className="med-badge" style={{ marginBottom: "1.5rem" }}>
-            <Plus size={16} strokeWidth={3} /> PATIENT STORIES
+            PATIENT STORIES
           </div>
           <h2 className="med-heading" style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)" }}>
             Trusted by Patients,<br /><span className="med-heading-highlight">Proven by Care</span>
@@ -393,40 +394,42 @@ function Testimonials() {
 }
 
 // --- LARGE CTA BANNER & FOOTER ---
-export function Footer() {
+export function Footer({ hideCTA = false }: { hideCTA?: boolean }) {
   return (
     <>
       {/* Massive CTA Banner overlapping footer */}
-      <div style={{ maxWidth: 1000, margin: "0 auto -100px auto", padding: "0 1.5rem", position: "relative", zIndex: 10 }}>
-        <div style={{
-          background: "var(--blue-primary)",
-          borderRadius: 32,
-          padding: "4rem 2rem",
-          textAlign: "center",
-          color: "#fff",
-          position: "relative",
-          overflow: "hidden"
-        }}>
-          {/* Subtle pattern background */}
-          <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", opacity: 0.1, background: "radial-gradient(circle at center, #ffffff 2px, transparent 2.5px) 0 0 / 20px 20px" }} />
+      {!hideCTA && (
+        <div style={{ maxWidth: 1000, margin: "0 auto -100px auto", padding: "0 1.5rem", position: "relative", zIndex: 10 }}>
+          <div style={{
+            background: "var(--blue-primary)",
+            borderRadius: 32,
+            padding: "4rem 2rem",
+            textAlign: "center",
+            color: "#fff",
+            position: "relative",
+            overflow: "hidden"
+          }}>
+            {/* Subtle pattern background */}
+            <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", opacity: 0.1, background: "radial-gradient(circle at center, #ffffff 2px, transparent 2.5px) 0 0 / 20px 20px" }} />
 
-          <div style={{ position: "relative", zIndex: 2 }}>
-            <div className="med-badge" style={{ background: "#ffffff", color: "var(--blue-primary)", marginBottom: "1.5rem" }}>
-              <Plus size={16} strokeWidth={3} /> BOOK NOW
-            </div>
-            <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.8rem)", fontWeight: 800, marginBottom: "1rem" }}>Ready to Schedule Your Visit?</h2>
-            <p style={{ fontSize: "1.1rem", opacity: 0.9, maxWidth: 600, margin: "0 auto 2.5rem auto" }}>
-              Schedule your appointment today and receive compassionate care from experienced healthcare professionals.
-            </p>
-            <Link href="/contact" className="med-button-primary" style={{ background: "#ffffff", color: "var(--gold-primary)" }}>
-              Book Appointment
-              <div className="med-button-icon" style={{ background: "var(--gold-primary)", color: "#fff" }}>
-                <ArrowUpRight size={16} strokeWidth={3} />
+            <div style={{ position: "relative", zIndex: 2 }}>
+              <div className="med-badge" style={{ background: "#ffffff", color: "var(--blue-primary)", marginBottom: "1.5rem" }}>
+                BOOK NOW
               </div>
-            </Link>
+              <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.8rem)", fontWeight: 800, marginBottom: "1rem" }}>Ready to Schedule Your Visit?</h2>
+              <p style={{ fontSize: "1.1rem", opacity: 0.9, maxWidth: 600, margin: "0 auto 2.5rem auto" }}>
+                Schedule your appointment today and receive compassionate care from experienced healthcare professionals.
+              </p>
+              <Link href="/contact" className="med-button-primary" style={{ background: "#ffffff", color: "var(--gold-primary)" }}>
+                Book Appointment
+                <div className="med-button-icon" style={{ background: "var(--gold-primary)", color: "#fff" }}>
+                  <ArrowUpRight size={16} strokeWidth={3} />
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Footer */}
       <footer style={{ background: "var(--bg-secondary)", paddingTop: "180px", paddingBottom: "3rem" }}>
@@ -529,7 +532,7 @@ function FounderSection() {
           transition={{ duration: 0.6 }}
         >
           <div className="med-badge" style={{ marginBottom: "1.5rem" }}>
-            <Plus size={16} strokeWidth={3} /> MEET THE FOUNDER
+            MEET THE FOUNDER
           </div>
           <h2 className="med-heading" style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", marginBottom: "1.5rem" }}>
             A Commitment to <span style={{ color: "#017aaf" }}>Global Care</span>
@@ -541,7 +544,12 @@ function FounderSection() {
             Our founder's vision has built a seamless bridge between affordability and exceptional care, partnering with top internationally accredited hospitals to ensure your journey to wellness is our absolute priority.
           </p>
 
-          <Link href="/founder" className="med-button-primary" style={{ display: "inline-flex", background: "#017aaf" }}>
+          <div style={{ marginBottom: "2rem" }}>
+            <h3 style={{ fontSize: "1.4rem", fontWeight: 800, color: "var(--blue-dark)", marginBottom: "0.25rem" }}>Jolly Malayil</h3>
+            <p style={{ color: "var(--blue-primary)", fontWeight: 700, fontSize: "0.95rem" }}>CEO & Chairman</p>
+          </div>
+
+          <Link href="/founder" className="med-button-primary" style={{ display: "inline-flex", background: "#017aaf", color: "#ffffff" }}>
             Know More About The Founder
             <div className="med-button-icon" style={{ color: "#daa837" }}>
               <ArrowRight size={16} strokeWidth={3} />
@@ -561,9 +569,9 @@ export default function Home() {
       <Navbar />
       <Hero />
       <ServicesPreview />
-      <FounderSection />
       <Testimonials />
       <FAQ />
+      <FounderSection />
       <Footer />
     </main>
   );

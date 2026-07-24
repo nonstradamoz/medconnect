@@ -22,7 +22,7 @@ export default function TermsPage() {
         <div style={{ maxWidth: 800, margin: "0 auto", padding: "0 1.5rem", textAlign: "center" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="med-badge" style={{ marginBottom: "1.5rem", background: "rgba(255,255,255,0.1)", color: "#ffffff", border: "1px solid rgba(255,255,255,0.2)" }}>
-              <Plus size={16} strokeWidth={3} /> LEGAL
+              LEGAL
             </div>
             <h1 className="med-heading" style={{ marginBottom: "1.5rem", color: "#ffffff" }}>
               Terms of <span style={{ color: "#daa837", textShadow: "0 4px 20px rgba(218, 168, 55, 0.4)" }}>Business</span>

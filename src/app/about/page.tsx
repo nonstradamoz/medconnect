@@ -18,7 +18,7 @@ export default function AboutPage() {
         <div style={{ maxWidth: 800, margin: "0 auto", padding: "0 1.5rem", textAlign: "center" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="med-badge" style={{ marginBottom: "1.5rem", background: "rgba(255,255,255,0.1)", color: "#ffffff", border: "1px solid rgba(255,255,255,0.2)" }}>
-              <Plus size={16} strokeWidth={3} /> WHO WE ARE
+              WHO WE ARE
             </div>
             <h1 className="med-heading" style={{ marginBottom: "1.5rem", color: "#ffffff" }}>
               Compassionate Care <br /><span style={{ color: "#daa837", textShadow: "0 4px 20px rgba(218, 168, 55, 0.4)" }}>Beyond Borders</span>
@@ -50,7 +50,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="med-badge" style={{ marginBottom: "1.5rem" }}>
-              <Plus size={16} strokeWidth={3} /> OUR MISSION
+              OUR MISSION
             </div>
             <h2 className="med-heading" style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", marginBottom: "1.5rem" }}>
               Dedicated to <span className="med-heading-highlight">Excellence</span>
@@ -72,7 +72,7 @@ export default function AboutPage() {
           <div style={{ textAlign: "center", marginBottom: "4rem" }}>
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
               <div className="med-badge" style={{ marginBottom: "1.5rem" }}>
-                <Plus size={16} strokeWidth={3} /> VISION & COMMITMENT
+                VISION & COMMITMENT
               </div>
               <h2 className="med-heading" style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)" }}>
                 Our Core <span className="med-heading-highlight">Values</span>
