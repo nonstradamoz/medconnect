@@ -436,7 +436,7 @@ export function Footer({ hideCTA = false }: { hideCTA?: boolean }) {
     <>
       {/* Massive CTA Banner overlapping footer */}
       {!hideCTA && (
-        <div style={{ maxWidth: 1000, margin: "0 auto -100px auto", padding: "0 1.5rem", position: "relative", zIndex: 10 }}>
+        <div style={{ maxWidth: 1000, margin: "4rem auto -100px auto", padding: "0 1.5rem", position: "relative", zIndex: 10 }}>
           <div style={{
             background: "var(--blue-primary)",
             borderRadius: 32,
