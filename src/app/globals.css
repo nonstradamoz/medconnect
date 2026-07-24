@@ -258,8 +258,8 @@
 
   .hero-image-wrapper {
     position: relative !important;
-    height: 50vw !important;
-    max-height: 280px !important;
+    height: 65vw !important;
+    max-height: 340px !important;
     min-height: auto !important;
     width: 100% !important;
     bottom: auto !important;
