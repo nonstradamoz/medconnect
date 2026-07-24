@@ -13,10 +13,35 @@ export default function ContactPage() {
 
   return (
     <main>
+      <style>{`
+        .contact-hero {
+          padding: 10rem 0 6rem 0;
+          background: linear-gradient(135deg, #017aaf 0%, #01587d 100%);
+        }
+        .contact-form-card {
+          padding: 3rem;
+        }
+        .contact-name-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.5rem;
+        }
+        @media (max-width: 768px) {
+          .contact-hero {
+            padding: 7rem 0 4rem 0;
+          }
+          .contact-form-card {
+            padding: 1.5rem;
+          }
+          .contact-name-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
       <Navbar />
 
       {/* Hero Section */}
-      <section style={{ padding: "10rem 0 6rem 0", background: "linear-gradient(135deg, #017aaf 0%, #01587d 100%)" }}>
+      <section className="contact-hero">
         <div style={{ maxWidth: 800, margin: "0 auto", padding: "0 1.5rem", textAlign: "center" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="med-badge" style={{ marginBottom: "1.5rem", background: "rgba(255,255,255,0.1)", color: "#ffffff", border: "1px solid rgba(255,255,255,0.2)" }}>
@@ -57,12 +82,12 @@ export default function ContactPage() {
 
           {/* Form Side */}
           <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8, delay: 0.2 }}>
-            <div className="med-card" style={{ padding: "3rem" }}>
+            <div className="med-card contact-form-card">
               <h3 style={{ fontSize: "1.8rem", fontWeight: 900, color: "var(--blue-dark)", marginBottom: "0.5rem" }}>Request a Callback</h3>
               <p style={{ color: "var(--text-muted)", fontSize: "1rem", marginBottom: "2.5rem" }}>Fill out the form below and our medical coordinator will get back to you within 2 hours.</p>
 
               <form style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }} onSubmit={(e) => e.preventDefault()}>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+                <div className="contact-name-grid">
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                     <label style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--blue-dark)" }}>First Name</label>
                     <input type="text" placeholder="John" style={{ padding: "1rem", borderRadius: 12, border: "1px solid #e2e8f0", fontSize: "1rem", outline: "none", fontFamily: "inherit", background: "var(--bg-main)" }} />
