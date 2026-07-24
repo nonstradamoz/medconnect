@@ -50,7 +50,7 @@ export function HeroSection() {
           }}>
             <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#0F172A", display: "inline-block" }} />
             <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "#0F172A", letterSpacing: "0.05em", textTransform: "uppercase" }}>
-              Premium Medical Concierge
+              what we do...
             </span>
           </div>
 
@@ -61,11 +61,10 @@ export function HeroSection() {
             lineHeight: 1.1,
             marginBottom: "1.5rem",
           }}>
-            Your Trusted Partner for Quality{" "}
+            Your trusted healthcare guide to{" "}
             <span style={{ textDecoration: "underline", textDecorationColor: "rgba(15,23,42,0.3)", textDecorationThickness: "3px" }}>
-              Global & Domestic
-            </span>{" "}
-            Healthcare
+              India and UAE
+            </span>
           </h1>
 
           <p style={{
@@ -75,12 +74,12 @@ export function HeroSection() {
             marginBottom: "2.5rem",
             maxWidth: "520px",
           }}>
-            Connecting patients to world-class medical expertise across borders — with compassion, cutting-edge technology, and complete peace of mind.
+            <strong>Your Cure, Our Care.</strong> India's leading international and NRI patients services company. Our consultant panel doctors identified hospitals in Mumbai, Delhi and Kerala.
           </p>
 
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginBottom: "3rem" }}>
             <Link href="/contact" className="btn-dark">
-              Book Free Consultation <ArrowRight size={16} />
+              Contact Us <ArrowRight size={16} />
             </Link>
             <Link href="/services" className="btn-outline-white">
               Explore Treatments

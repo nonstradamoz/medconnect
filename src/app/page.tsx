@@ -63,11 +63,24 @@ export function Navbar() {
 
           {/* CTA & Mobile Menu Toggle */}
           <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-            <Link href="/portal" style={{ fontWeight: 700, fontSize: "0.95rem", color: "var(--blue-primary)", textDecoration: "none" }} className="desktop-only">
+            <Link href="/portal" style={{ 
+              fontWeight: 700, 
+              fontSize: "0.95rem", 
+              color: "#ffffff", 
+              textDecoration: "none",
+              padding: "0.6rem 1.2rem",
+              background: "#111111",
+              borderRadius: "999px",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)"
+            }} className="desktop-only">
+              <Users size={16} color="#daa837" />
               Patient Portal
             </Link>
             <Link href="/contact" className="med-button-primary desktop-only">
-              Book Appointment
+              Contact Us
               <div className="med-button-icon">
                 <ArrowUpRight size={16} strokeWidth={3} />
               </div>
@@ -130,7 +143,7 @@ export function Navbar() {
               ))}
 
               <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="med-button-primary" style={{ marginTop: "1rem" }}>
-                Book Appointment
+                Contact Us
               </Link>
             </div>
           </motion.div>
@@ -162,7 +175,7 @@ function Hero() {
       className="home-hero-section"
       animate={exiting ? { y: "-30vh", opacity: 0, scale: 0.97 } : { y: 0, opacity: 1, scale: 1 }}
       transition={exiting ? { duration: 0.55, ease: [0.76, 0, 0.24, 1] } : { duration: 0 }}
-      style={{ position: "relative", overflow: "hidden", padding: "4rem 0 0 0", background: "linear-gradient(135deg, #017aaf 0%, #01587d 100%)", minHeight: "100vh", display: "flex", alignItems: "center" }}
+      style={{ position: "relative", overflow: "hidden", padding: "4rem 0 0 0", background: "linear-gradient(135deg, #daa837 0%, #b58823 100%)", minHeight: "100vh", display: "flex", alignItems: "center" }}
     >
 
       {/* Animated Gradient Orbs */}
@@ -235,25 +248,29 @@ function Hero() {
             <motion.div animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 2, repeat: Infinity }}>
               <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#daa837" }} />
             </motion.div>
-            <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "#daa837", letterSpacing: "0.08em" }}>TRUSTED GLOBAL HEALTHCARE</span>
+            <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "#daa837", letterSpacing: "0.08em", textTransform: "uppercase" }}>what we do...</span>
           </motion.div> */}
 
           {/* Staggered heading */}
           <div style={{ marginBottom: "1.5rem" }}>
-            {["Your Trusted", "Healthcare", "Partner"].map((word, i) => (
+            {["Your trusted", "healthcare guide to", "India and UAE"].map((word, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 40, skewY: 3 }}
                 animate={{ opacity: 1, y: 0, skewY: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 + i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-                style={{ display: "block", overflow: "hidden" }}
+                style={{
+                  display: "block",
+                  overflow: "hidden",
+                  paddingBottom: "0.3em",
+                }}
               >
                 <span className="med-heading" style={{
                   display: "block",
                   lineHeight: 1.1,
-                  fontSize: "clamp(3rem, 6vw, 5.5rem)",
-                  color: word === "Healthcare" ? "#daa837" : "#ffffff",
-                  textShadow: word === "Healthcare" ? "0 4px 20px rgba(218, 168, 55, 0.4)" : "none",
+                  fontSize: "clamp(2.3rem, 5vw, 5rem)",
+                  color: word === "India and UAE" ? "#111111" : "#ffffff",
+                  textShadow: "none",
                 }}>
                   {word}
                 </span>
@@ -262,14 +279,19 @@ function Hero() {
           </div>
 
           {/* Subtitle */}
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            style={{ fontSize: "1.5rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.6, marginBottom: "2.5rem", maxWidth: 500 }}
+            style={{ marginBottom: "2.5rem", maxWidth: 550 }}
           >
-            Connecting patients with trusted doctors, hospitals, and personalized healthcare.
-          </motion.p>
+            <p style={{ fontSize: "1.5rem", fontWeight: 700, color: "#ffffff", marginBottom: "0.5rem" }}>
+              Your Cure, Our Care.
+            </p>
+            <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.6 }}>
+              India's leading international and NRI patients services company. Our consultant panel doctors identified hospitals in Mumbai, Delhi and Kerala.
+            </p>
+          </motion.div>
 
           {/* CTA Button */}
           <motion.div
@@ -280,9 +302,9 @@ function Hero() {
             whileTap={{ scale: 0.97 }}
             style={{ display: "inline-block" }}
           >
-            <Link href="/contact" className="med-button-primary">
-              Book Appointment
-              <div className="med-button-icon">
+            <Link href="/contact" className="med-button-primary" style={{ background: "#ffffff", color: "#111111" }}>
+              Contact Us
+              <div className="med-button-icon" style={{ background: "#111111", color: "#ffffff" }}>
                 <ArrowUpRight size={16} strokeWidth={3} />
               </div>
             </Link>
@@ -458,7 +480,7 @@ export function Footer({ hideCTA = false }: { hideCTA?: boolean }) {
                 Schedule your appointment today and receive compassionate care from experienced healthcare professionals.
               </p>
               <Link href="/contact" className="med-button-primary" style={{ background: "#ffffff", color: "var(--gold-primary)" }}>
-                Book Appointment
+                Contact Us
                 <div className="med-button-icon" style={{ background: "var(--gold-primary)", color: "#fff" }}>
                   <ArrowUpRight size={16} strokeWidth={3} />
                 </div>
@@ -554,7 +576,7 @@ function FounderSection() {
           {/* Decorative element */}
           <div style={{ position: "absolute", bottom: -20, right: -20, background: "var(--bg-main)", padding: "1.5rem", borderRadius: 24, boxShadow: "0 10px 40px rgba(0,0,0,0.08)" }}>
             <p style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--text-dark)", lineHeight: 1.2 }}>
-              Visionary<br /><span style={{ color: "#017aaf" }}>Leadership</span>
+              Visionary<br /><span style={{ color: "#daa837" }}>Leadership</span>
             </p>
           </div>
         </motion.div>
@@ -570,7 +592,7 @@ function FounderSection() {
             MEET THE FOUNDER
           </div>
           <h2 className="med-heading" style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", marginBottom: "1.5rem" }}>
-            A Commitment to <span style={{ color: "#017aaf" }}>Global Care</span>
+            A Commitment to <span style={{ color: "#daa837" }}>Global Care</span>
           </h2>
           <p style={{ color: "var(--text-muted)", fontSize: "1.1rem", lineHeight: 1.7, marginBottom: "1.5rem" }}>
             A traditional Catholic family from Alleppey, Kerala, the Malayil brothers have built a legacy spanning 33+ years across the GCC and beyond — from medical clinics and pharmacies to manufacturing and finance.
@@ -584,7 +606,7 @@ function FounderSection() {
             <p style={{ color: "var(--blue-primary)", fontWeight: 700, fontSize: "0.95rem" }}>Chairman & CEO — Malayil Family Business, Neil Group of Companies & MedConnect Global</p>
           </div>
 
-          <Link href="/founder" className="med-button-primary" style={{ display: "inline-flex", background: "#017aaf", color: "#ffffff" }}>
+          <Link href="/founder" className="med-button-primary" style={{ display: "inline-flex", background: "#daa837", color: "#ffffff" }}>
             Know More About The Founder
             <div className="med-button-icon" style={{ color: "#daa837" }}>
               <ArrowRight size={16} strokeWidth={3} />
@@ -597,6 +619,7 @@ function FounderSection() {
 }
 
 import { FAQ } from "@/components/sections/FAQ";
+import { IdentifiedHospitals } from "@/components/sections/IdentifiedHospitals";
 
 export default function Home() {
   return (
@@ -604,6 +627,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <ServicesPreview />
+      <IdentifiedHospitals />
       <Testimonials />
       <FAQ />
       <FounderSection />

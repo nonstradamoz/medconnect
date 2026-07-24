@@ -18,7 +18,7 @@ export default function TermsPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section style={{ padding: "10rem 0 6rem 0", background: "linear-gradient(135deg, #017aaf 0%, #01587d 100%)" }}>
+      <section style={{ padding: "10rem 0 6rem 0", background: "linear-gradient(135deg, #daa837 0%, #b58823 100%)" }}>
         <div style={{ maxWidth: 800, margin: "0 auto", padding: "0 1.5rem", textAlign: "center" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="med-badge" style={{ marginBottom: "1.5rem", background: "rgba(255,255,255,0.1)", color: "#ffffff", border: "1px solid rgba(255,255,255,0.2)" }}>

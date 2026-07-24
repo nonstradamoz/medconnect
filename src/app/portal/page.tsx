@@ -174,13 +174,13 @@ export default function PortalPage() {
           
           {/* Support Widget */}
           <div style={{ padding: "1.5rem" }}>
-            <div style={{ background: "rgba(1, 122, 175, 0.1)", padding: "1.5rem", borderRadius: 20, border: "1px solid rgba(1,122,175,0.2)" }}>
-              <div style={{ width: 44, height: 44, borderRadius: "50%", background: "var(--blue-primary)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem", boxShadow: "0 8px 20px rgba(1, 122, 175, 0.4)" }}>
+            <div style={{ background: "rgba(218, 168, 55, 0.1)", padding: "1.5rem", borderRadius: 20, border: "1px solid rgba(218, 168, 55,0.2)" }}>
+              <div style={{ width: 44, height: 44, borderRadius: "50%", background: "var(--blue-primary)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem", boxShadow: "0 8px 20px rgba(218, 168, 55, 0.4)" }}>
                 <MessageSquare size={20} color="#fff" />
               </div>
               <h4 style={{ fontWeight: 800, color: "#1e293b", fontSize: "1rem", marginBottom: 4 }}>Case Manager</h4>
               <p style={{ fontSize: "0.85rem", color: "#64748b", marginBottom: "1.2rem" }}>Sarah is online</p>
-              <button style={{ width: "100%", padding: "0.85rem", background: "var(--blue-primary)", border: "none", borderRadius: 12, fontWeight: 700, color: "#fff", cursor: "pointer", fontSize: "0.9rem", transition: "transform 0.2s", boxShadow: "0 4px 15px rgba(1,122,175,0.3)" }}>Chat Now</button>
+              <button style={{ width: "100%", padding: "0.85rem", background: "var(--blue-primary)", border: "none", borderRadius: 12, fontWeight: 700, color: "#fff", cursor: "pointer", fontSize: "0.9rem", transition: "transform 0.2s", boxShadow: "0 4px 15px rgba(218, 168, 55,0.3)" }}>Chat Now</button>
             </div>
           </div>
         </aside>
@@ -249,7 +249,7 @@ export default function PortalPage() {
                       {/* Card 1 */}
                       <div style={{ background: "rgba(255,255,255,0.9)", padding: "1.5rem", borderRadius: 24, boxShadow: "0 10px 30px rgba(0,0,0,0.05)", border: "1px solid rgba(255,255,255,0.5)" }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: "1.5rem" }}>
-                          <div style={{ width: 48, height: 48, borderRadius: 16, background: "rgba(1, 122, 175, 0.1)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--blue-primary)" }}>
+                          <div style={{ width: 48, height: 48, borderRadius: 16, background: "rgba(218, 168, 55, 0.1)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--blue-primary)" }}>
                             <Calendar size={24} />
                           </div>
                           <div>
@@ -311,7 +311,7 @@ export default function PortalPage() {
                     <div 
                       onClick={() => fileInputRef.current?.click()}
                       style={{ 
-                        border: "2px dashed rgba(1,122,175,0.3)", 
+                        border: "2px dashed rgba(218, 168, 55,0.3)", 
                         borderRadius: 24, 
                         padding: "3rem 2rem", 
                         textAlign: "center", 
@@ -327,7 +327,7 @@ export default function PortalPage() {
                         style={{ display: "none" }} 
                         onChange={handleFileUpload} 
                       />
-                      <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(1,122,175,0.1)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.5rem auto", color: "var(--blue-primary)" }}>
+                      <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(218, 168, 55,0.1)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.5rem auto", color: "var(--blue-primary)" }}>
                         <UploadCloud size={32} />
                       </div>
                       <h3 style={{ fontSize: "1.2rem", fontWeight: 700, color: "#1e293b", marginBottom: "0.5rem" }}>Click or drag files to upload</h3>
@@ -348,7 +348,7 @@ export default function PortalPage() {
                           style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1.2rem 1.5rem", background: "rgba(255,255,255,0.8)", borderRadius: 16, border: "1px solid rgba(0,0,0,0.05)" }}
                         >
                           <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                            <div style={{ width: 48, height: 48, borderRadius: 12, background: "rgba(1,122,175,0.1)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--blue-primary)" }}>
+                            <div style={{ width: 48, height: 48, borderRadius: 12, background: "rgba(218, 168, 55,0.1)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--blue-primary)" }}>
                               <File size={24} />
                             </div>
                             <div>
@@ -388,7 +388,7 @@ export default function PortalPage() {
                       ].map((apt, i) => (
                         <div key={i} className="appointment-card">
                           <div className="appointment-info">
-                            <div style={{ background: "rgba(1,122,175,0.1)", color: "var(--blue-primary)", padding: "1rem", borderRadius: 16, textAlign: "center", minWidth: 80 }}>
+                            <div style={{ background: "rgba(218, 168, 55,0.1)", color: "var(--blue-primary)", padding: "1rem", borderRadius: 16, textAlign: "center", minWidth: 80 }}>
                               <p style={{ fontSize: "0.85rem", fontWeight: 700, textTransform: "uppercase" }}>{apt.date.split(' ')[0]}</p>
                               <p style={{ fontSize: "1.5rem", fontWeight: 900 }}>{apt.date.split(' ')[1].replace(',', '')}</p>
                             </div>
@@ -400,7 +400,7 @@ export default function PortalPage() {
                           </div>
                           <div className="appointment-actions">
                             <button style={{ border: "1px solid rgba(0,0,0,0.1)", background: "transparent", color: "#1e293b", padding: "0.6rem 1.2rem", borderRadius: 8, fontWeight: 600, cursor: "pointer" }}>Reschedule</button>
-                            <button style={{ border: "none", background: "rgba(1,122,175,0.1)", color: "var(--blue-primary)", padding: "0.6rem 1.2rem", borderRadius: 8, fontWeight: 700, cursor: "pointer" }}>Join Video Call</button>
+                            <button style={{ border: "none", background: "rgba(218, 168, 55,0.1)", color: "var(--blue-primary)", padding: "0.6rem 1.2rem", borderRadius: 8, fontWeight: 700, cursor: "pointer" }}>Join Video Call</button>
                           </div>
                         </div>
                       ))}

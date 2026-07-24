@@ -2,9 +2,9 @@
 
 :root {
   /* MedDocX Layout with User's Brand Colors */
-  --blue-primary: #017aaf;
-  --blue-dark: #0f172a;
-  --blue-light: rgba(1, 122, 175, 0.1);
+  --blue-primary: #111111;
+  --blue-dark: #000000;
+  --blue-light: rgba(0, 0, 0, 0.05);
 
   --gold-primary: #daa837;
   --gold-light: rgba(218, 168, 55, 0.15);
@@ -13,8 +13,8 @@
   --bg-secondary: #f8f9fa;
   /* Ultra light gray for alternating sections */
 
-  --text-dark: #1e293b;
-  --text-muted: #64748b;
+  --text-dark: #000000;
+  --text-muted: #4b5563;
 }
 
 @layer base {

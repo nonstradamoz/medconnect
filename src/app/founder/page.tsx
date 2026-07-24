@@ -28,14 +28,14 @@ export default function FounderPage() {
       {/* Hero Section */}
       <section style={{ padding: "8rem 0 5rem 0", background: "linear-gradient(180deg, #eff5fb 0%, #ffffff 100%)", position: "relative", overflow: "hidden" }}>
         {/* Decorative background */}
-        <div style={{ position: "absolute", top: 0, right: 0, width: "40%", height: "100%", background: "radial-gradient(circle at top right, rgba(1,122,175,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: 0, right: 0, width: "40%", height: "100%", background: "radial-gradient(circle at top right, rgba(218, 168, 55,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
         <div style={{ maxWidth: 1000, margin: "0 auto", padding: "0 1.5rem", textAlign: "center", position: "relative", zIndex: 10 }}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="med-badge" style={{ marginBottom: "2rem" }}>
               THE VISIONARY
             </div>
             <h1 className="med-heading" style={{ marginBottom: "1.5rem", fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>
-              Meet Our <span style={{ color: "#017aaf" }}>Founder</span>
+              Meet Our <span style={{ color: "#daa837" }}>Founder</span>
             </h1>
             <p style={{ fontSize: "1.2rem", color: "var(--text-muted)", lineHeight: 1.7, maxWidth: 650, margin: "0 auto 2rem auto" }}>
               A lifelong entrepreneur, family patriarch, and visionary leader who has dedicated 33+ years to building businesses that improve lives — from healthcare clinics in the UAE to global investment and now, MedConnect Global.
@@ -74,7 +74,7 @@ export default function FounderPage() {
 
             {/* External link to JMV */}
             <Link href="https://jmvwealth.com" target="_blank" rel="noopener noreferrer"
-              style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginTop: "1.5rem", padding: "1rem", borderRadius: 16, border: "1px solid rgba(0,0,0,0.08)", background: "#fff", color: "#017aaf", fontWeight: 700, textDecoration: "none", transition: "all 0.2s ease", boxShadow: "0 4px 15px rgba(0,0,0,0.03)" }}
+              style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginTop: "1.5rem", padding: "1rem", borderRadius: 16, border: "1px solid rgba(0,0,0,0.08)", background: "#fff", color: "#daa837", fontWeight: 700, textDecoration: "none", transition: "all 0.2s ease", boxShadow: "0 4px 15px rgba(0,0,0,0.03)" }}
             >
               <Globe size={18} />
               Visit JMV Wealth Management
@@ -90,7 +90,7 @@ export default function FounderPage() {
             style={{ paddingTop: "1rem" }}
           >
             <h2 style={{ fontSize: "2.2rem", fontWeight: 800, color: "var(--blue-dark)", marginBottom: "2rem" }}>
-              The <span style={{ color: "#017aaf" }}>Malayil Legacy</span>
+              The <span style={{ color: "#daa837" }}>Malayil Legacy</span>
             </h2>
 
             <p style={{ fontSize: "1.1rem", color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "1.5rem" }}>
@@ -107,7 +107,7 @@ export default function FounderPage() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.2rem", marginBottom: "3rem" }}>
               <div style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start", background: "#eff5fb", padding: "1.75rem", borderRadius: 24 }}>
                 <div style={{ width: 52, height: 52, borderRadius: 14, background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, boxShadow: "0 4px 15px rgba(0,0,0,0.03)" }}>
-                  <Award size={26} color="#017aaf" />
+                  <Award size={26} color="#daa837" />
                 </div>
                 <div>
                   <h4 style={{ fontSize: "1.1rem", fontWeight: 800, color: "var(--blue-dark)", marginBottom: "0.4rem" }}>33+ Years of Business Excellence</h4>
@@ -117,7 +117,7 @@ export default function FounderPage() {
 
               <div style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start", background: "#eff5fb", padding: "1.75rem", borderRadius: 24 }}>
                 <div style={{ width: 52, height: 52, borderRadius: 14, background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, boxShadow: "0 4px 15px rgba(0,0,0,0.03)" }}>
-                  <HeartPulse size={26} color="#017aaf" />
+                  <HeartPulse size={26} color="#daa837" />
                 </div>
                 <div>
                   <h4 style={{ fontSize: "1.1rem", fontWeight: 800, color: "var(--blue-dark)", marginBottom: "0.4rem" }}>Healthcare Roots Since 1987</h4>
@@ -127,7 +127,7 @@ export default function FounderPage() {
 
               <div style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start", background: "#eff5fb", padding: "1.75rem", borderRadius: 24 }}>
                 <div style={{ width: 52, height: 52, borderRadius: 14, background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, boxShadow: "0 4px 15px rgba(0,0,0,0.03)" }}>
-                  <Globe size={26} color="#017aaf" />
+                  <Globe size={26} color="#daa837" />
                 </div>
                 <div>
                   <h4 style={{ fontSize: "1.1rem", fontWeight: 800, color: "var(--blue-dark)", marginBottom: "0.4rem" }}>Angel Investor & Capital Markets Pioneer</h4>
@@ -149,12 +149,12 @@ export default function FounderPage() {
           <div style={{ textAlign: "center", marginBottom: "4rem" }}>
             <div className="med-badge" style={{ marginBottom: "1.5rem" }}>THE JOURNEY</div>
             <h2 className="med-heading" style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)" }}>
-              A Timeline of <span style={{ color: "#017aaf" }}>Milestones</span>
+              A Timeline of <span style={{ color: "#daa837" }}>Milestones</span>
             </h2>
           </div>
           <div style={{ position: "relative" }}>
             {/* Vertical line */}
-            <div style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", top: 0, bottom: 0, width: 2, background: "linear-gradient(180deg, #017aaf 0%, #daa837 100%)", opacity: 0.2 }} />
+            <div style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", top: 0, bottom: 0, width: 2, background: "linear-gradient(180deg, #daa837 0%, #daa837 100%)", opacity: 0.2 }} />
             <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
               {milestones.map((m, i) => (
                 <motion.div
@@ -168,7 +168,7 @@ export default function FounderPage() {
                   <div style={{ flex: 1, background: "#fff", padding: "1.5rem 2rem", borderRadius: 20, boxShadow: "0 4px 20px rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.04)", textAlign: i % 2 === 0 ? "right" : "left" }}>
                     <p style={{ fontSize: "0.95rem", color: "var(--text-muted)", lineHeight: 1.6 }}>{m.event}</p>
                   </div>
-                  <div style={{ flexShrink: 0, width: 64, height: 64, borderRadius: "50%", background: "linear-gradient(135deg, #017aaf 0%, #01587d 100%)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1, boxShadow: "0 4px 15px rgba(1,122,175,0.3)" }}>
+                  <div style={{ flexShrink: 0, width: 64, height: 64, borderRadius: "50%", background: "linear-gradient(135deg, #daa837 0%, #b58823 100%)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1, boxShadow: "0 4px 15px rgba(218, 168, 55,0.3)" }}>
                     <span style={{ color: "#fff", fontWeight: 900, fontSize: "0.7rem", textAlign: "center", lineHeight: 1.2 }}>{m.year}</span>
                   </div>
                   <div style={{ flex: 1 }} />
@@ -180,7 +180,7 @@ export default function FounderPage() {
       </section>
 
       {/* Stats Section */}
-      <section style={{ padding: "5rem 0", background: "linear-gradient(135deg, #017aaf 0%, #01587d 100%)" }}>
+      <section style={{ padding: "5rem 0", background: "linear-gradient(135deg, #daa837 0%, #b58823 100%)" }}>
         <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 1.5rem" }}>
           <div style={{ textAlign: "center", marginBottom: "3rem" }}>
             <h2 style={{ fontSize: "clamp(1.8rem, 3vw, 2.5rem)", fontWeight: 800, color: "#fff" }}>

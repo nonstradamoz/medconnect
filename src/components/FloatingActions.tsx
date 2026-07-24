@@ -70,7 +70,7 @@ export function FloatingActions() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            boxShadow: "0 10px 40px rgba(1, 122, 175, 0.4)",
+            boxShadow: "0 10px 40px rgba(218, 168, 55, 0.4)",
             border: "none",
             cursor: "pointer",
             position: "relative"

@@ -16,7 +16,7 @@ export default function ContactPage() {
       <style>{`
         .contact-hero {
           padding: 10rem 0 6rem 0;
-          background: linear-gradient(135deg, #017aaf 0%, #01587d 100%);
+          background: linear-gradient(135deg, #daa837 0%, #b58823 100%);
         }
         .contact-form-card {
           padding: 3rem;

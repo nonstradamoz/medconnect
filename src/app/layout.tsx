@@ -9,11 +9,11 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "MedConnect Global | Your Trusted Partner for Quality Healthcare",
-  description: "Connecting Patients to World-Class Healthcare Across Borders — with Compassion, Technology, and Complete Peace of Mind.",
+  title: "MedConnect Global | Your Cure, Our Care",
+  description: "India's leading international and NRI patients services company. Your trusted healthcare guide to India and UAE.",
   openGraph: {
-    title: "MedConnect Global | Premium Medical Tourism",
-    description: "Your Trusted Partner for Quality Global & Domestic Healthcare.",
+    title: "MedConnect Global | Your Cure, Our Care",
+    description: "India's leading international and NRI patients services company. Your trusted healthcare guide to India and UAE.",
     type: "website",
   },
 };
