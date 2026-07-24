@@ -3,13 +3,14 @@ import { useState, useRef } from "react";
 import { 
   LayoutDashboard, FileText, Calendar, CreditCard, MessageSquare, 
   UploadCloud, Bell, CheckCircle2, File, Loader2, ArrowRight,
-  User, Search, Clock, Activity, Globe
+  User, Search, Clock, Activity, Globe, Menu, X
 } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function PortalPage() {
   const [activeTab, setActiveTab] = useState("Dashboard");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState<{name: string, size: string, status: "uploading"|"completed", date?: string}[]>([
     { name: "Blood_Test_Results_2026.pdf", size: "2.4 MB", status: "completed", date: "Oct 10, 2026" },
     { name: "Cardiology_Consult_Notes.pdf", size: "1.1 MB", status: "completed", date: "Sep 28, 2026" },
@@ -45,6 +46,55 @@ export default function PortalPage() {
       display: "flex",
       overflow: "hidden"
     }}>
+      <style>{`
+        .appointments-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 2rem;
+        }
+        .appointment-card {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1.5rem;
+          background: #ffffff;
+          border-radius: 16px;
+          border: 1px solid rgba(0,0,0,0.05);
+          box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+        .appointment-info {
+          display: flex;
+          gap: 1.5rem;
+          align-items: center;
+        }
+        .appointment-actions {
+          display: flex;
+          gap: 1rem;
+        }
+        @media (max-width: 768px) {
+          .appointments-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+          }
+          .appointments-header button {
+            width: 100%;
+          }
+          .appointment-card {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+          }
+          .appointment-actions {
+            width: 100%;
+            flex-direction: column;
+          }
+          .appointment-actions button {
+            width: 100%;
+          }
+        }
+      `}</style>
       
       {/* Main Container */}
       <motion.div 
@@ -60,8 +110,16 @@ export default function PortalPage() {
         }}
       >
         
+        {/* Mobile Sidebar Overlay */}
+        {isMobileMenuOpen && (
+          <div 
+            onClick={() => setIsMobileMenuOpen(false)}
+            style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.5)", zIndex: 999 }}
+          />
+        )}
+
         {/* Sidebar */}
-        <aside className="portal-sidebar" style={{ background: "var(--bg-main)", borderRight: "1px solid rgba(0,0,0,0.05)" }}>
+        <aside className={`portal-sidebar ${isMobileMenuOpen ? 'open' : ''}`} style={{ background: "var(--bg-main)", borderRight: "1px solid rgba(0,0,0,0.05)" }}>
           
           {/* Logo Area */}
           <div style={{ height: 80, display: "flex", alignItems: "center", padding: "0 1.5rem" }}>
@@ -78,7 +136,10 @@ export default function PortalPage() {
               return (
                 <button 
                   key={index} 
-                  onClick={() => setActiveTab(item.label)}
+                  onClick={() => {
+                    setActiveTab(item.label);
+                    setIsMobileMenuOpen(false);
+                  }}
                   style={{
                     display: "flex", alignItems: "center", gap: 14, padding: "1rem", borderRadius: 16, border: "none", cursor: "pointer",
                     background: isActive ? "var(--blue-light)" : "transparent",
@@ -127,26 +188,15 @@ export default function PortalPage() {
         {/* Main Content Area */}
         <main style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
           
-          <div className="portal-mobile-header" style={{ overflowX: "auto" }}>
-            <div style={{ display: "flex", gap: "1rem", whiteSpace: "nowrap" }}>
-              {navItems.map((item, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveTab(item.label)}
-                  style={{
-                    background: activeTab === item.label ? "var(--blue-primary)" : "transparent",
-                    color: activeTab === item.label ? "#fff" : "#1e293b",
-                    border: "none",
-                    padding: "0.5rem 1rem",
-                    borderRadius: "999px",
-                    fontWeight: 700,
-                    fontSize: "0.9rem"
-                  }}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
+          <div className="portal-mobile-header">
+            <button 
+              onClick={() => setIsMobileMenuOpen(true)}
+              style={{ background: "none", border: "none", cursor: "pointer", color: "var(--blue-dark)", display: "flex", alignItems: "center", justifyContent: "center" }}
+            >
+              <Menu size={28} />
+            </button>
+            <h1 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#1e293b", margin: 0, flex: 1, textAlign: "center" }}>{activeTab}</h1>
+            <div style={{ width: 28 }} /> {/* Spacer to balance the hamburger icon */}
           </div>
 
           {/* Top Header */}
@@ -325,7 +375,7 @@ export default function PortalPage() {
                 {/* APPOINTMENTS TAB */}
                 {activeTab === "Appointments" && (
                   <div>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem" }}>
+                    <div className="appointments-header">
                       <h2 style={{ fontSize: "1.8rem", fontWeight: 800, color: "#1e293b" }}>Appointments</h2>
                       <button style={{ background: "var(--blue-primary)", color: "#fff", padding: "0.8rem 1.5rem", borderRadius: 12, fontWeight: 700, border: "none", cursor: "pointer" }}>Book New Appointment</button>
                     </div>
@@ -336,8 +386,8 @@ export default function PortalPage() {
                         { date: "Oct 12, 2026", time: "10:30 AM", doctor: "Dr. Sarah Jenkins", type: "Cardiology Consultation", location: "Apollo Hospital, Room 302" },
                         { date: "Nov 05, 2026", time: "02:00 PM", doctor: "Dr. Michael Chen", type: "Annual Physical Checkup", location: "MedConnect Central Clinic" }
                       ].map((apt, i) => (
-                        <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1.5rem", background: "#ffffff", borderRadius: 16, border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 4px 15px rgba(0,0,0,0.02)" }}>
-                          <div style={{ display: "flex", gap: "1.5rem", alignItems: "center" }}>
+                        <div key={i} className="appointment-card">
+                          <div className="appointment-info">
                             <div style={{ background: "rgba(1,122,175,0.1)", color: "var(--blue-primary)", padding: "1rem", borderRadius: 16, textAlign: "center", minWidth: 80 }}>
                               <p style={{ fontSize: "0.85rem", fontWeight: 700, textTransform: "uppercase" }}>{apt.date.split(' ')[0]}</p>
                               <p style={{ fontSize: "1.5rem", fontWeight: 900 }}>{apt.date.split(' ')[1].replace(',', '')}</p>
@@ -348,7 +398,7 @@ export default function PortalPage() {
                               <p style={{ color: "#94a3b8", fontSize: "0.85rem", display: "flex", alignItems: "center", gap: 4 }}><Clock size={14} /> {apt.location}</p>
                             </div>
                           </div>
-                          <div style={{ display: "flex", gap: "1rem" }}>
+                          <div className="appointment-actions">
                             <button style={{ border: "1px solid rgba(0,0,0,0.1)", background: "transparent", color: "#1e293b", padding: "0.6rem 1.2rem", borderRadius: 8, fontWeight: 600, cursor: "pointer" }}>Reschedule</button>
                             <button style={{ border: "none", background: "rgba(1,122,175,0.1)", color: "var(--blue-primary)", padding: "0.6rem 1.2rem", borderRadius: 8, fontWeight: 700, cursor: "pointer" }}>Join Video Call</button>
                           </div>
@@ -358,8 +408,8 @@ export default function PortalPage() {
 
                     <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#1e293b", marginBottom: "1.5rem" }}>Past Appointments</h3>
                     <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1.5rem", background: "rgba(255,255,255,0.5)", borderRadius: 16, border: "1px solid rgba(0,0,0,0.05)" }}>
-                        <div style={{ display: "flex", gap: "1.5rem", alignItems: "center" }}>
+                      <div className="appointment-card" style={{ background: "rgba(255,255,255,0.5)" }}>
+                        <div className="appointment-info">
                           <div style={{ background: "#f1f5f9", color: "#64748b", padding: "1rem", borderRadius: 16, textAlign: "center", minWidth: 80 }}>
                             <p style={{ fontSize: "0.85rem", fontWeight: 700, textTransform: "uppercase" }}>Sep</p>
                             <p style={{ fontSize: "1.5rem", fontWeight: 900 }}>28</p>
