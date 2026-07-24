@@ -3,14 +3,18 @@ import { useState, useRef } from "react";
 import { 
   LayoutDashboard, FileText, Calendar, CreditCard, MessageSquare, 
   UploadCloud, Bell, CheckCircle2, File, Loader2, ArrowRight,
-  User, Search, Clock, Activity
+  User, Search, Clock, Activity, Globe
 } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function PortalPage() {
   const [activeTab, setActiveTab] = useState("Dashboard");
-  const [uploadedFiles, setUploadedFiles] = useState<{name: string, size: string, status: "uploading"|"completed"}[]>([]);
+  const [uploadedFiles, setUploadedFiles] = useState<{name: string, size: string, status: "uploading"|"completed", date?: string}[]>([
+    { name: "Blood_Test_Results_2026.pdf", size: "2.4 MB", status: "completed", date: "Oct 10, 2026" },
+    { name: "Cardiology_Consult_Notes.pdf", size: "1.1 MB", status: "completed", date: "Sep 28, 2026" },
+    { name: "MRI_Scan_Summary.jpg", size: "5.7 MB", status: "completed", date: "Aug 15, 2026" }
+  ]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,34 +39,21 @@ export default function PortalPage() {
 
   return (
     <div style={{ 
-      minHeight: "100vh", 
-      background: "linear-gradient(135deg, #017aaf 0%, #004261 100%)", 
+      height: "100vh", 
+      background: "var(--bg-secondary)", 
       fontFamily: "var(--font-plus-jakarta-sans), sans-serif",
       display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      padding: "2rem"
+      overflow: "hidden"
     }}>
       
-      {/* Background Animated Blobs */}
-      <motion.div animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }} transition={{ duration: 20, repeat: Infinity }} style={{ position: "absolute", top: "5%", left: "10%", width: "40vw", height: "40vw", background: "radial-gradient(circle, rgba(218,168,55,0.2) 0%, transparent 70%)", borderRadius: "50%", zIndex: 0 }} />
-      <motion.div animate={{ scale: [1, 1.3, 1], rotate: [0, -90, 0] }} transition={{ duration: 25, repeat: Infinity }} style={{ position: "absolute", bottom: "5%", right: "10%", width: "50vw", height: "50vw", background: "radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)", borderRadius: "50%", zIndex: 0 }} />
-
-      {/* Main Glassmorphism Container */}
+      {/* Main Container */}
       <motion.div 
-        initial={{ opacity: 0, y: 30, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         style={{ 
           width: "100%", 
-          maxWidth: 1400, 
-          height: "85vh", 
-          background: "rgba(255, 255, 255, 0.75)", 
-          backdropFilter: "blur(24px)", 
-          WebkitBackdropFilter: "blur(24px)",
-          borderRadius: 32, 
-          border: "1px solid rgba(255, 255, 255, 0.4)", 
-          boxShadow: "0 24px 60px rgba(0,0,0,0.2)",
+          height: "100vh", 
           display: "flex",
           overflow: "hidden",
           zIndex: 10
@@ -70,13 +61,13 @@ export default function PortalPage() {
       >
         
         {/* Sidebar */}
-        <aside className="portal-sidebar">
+        <aside className="portal-sidebar" style={{ background: "var(--bg-main)", borderRight: "1px solid rgba(0,0,0,0.05)" }}>
           
           {/* Logo Area */}
           <div style={{ height: 80, display: "flex", alignItems: "center", padding: "0 1.5rem" }}>
-            <Link href="/" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }}>
-              <div style={{ width: 36, height: 36, borderRadius: 10, background: "var(--gold-primary)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: "1rem", color: "#111" }}>M</div>
-              <span style={{ fontWeight: 800, fontSize: "1.2rem", color: "#1e293b" }}>MedConnect</span>
+            <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
+              <img src="/logo-icon.png" alt="MedConnect Global" style={{ height: "36px", width: "auto", objectFit: "contain" }} />
+              <span style={{ fontWeight: 800, fontSize: "1.3rem", color: "var(--blue-dark)", letterSpacing: "-0.5px" }}>MedConnect</span>
             </Link>
           </div>
 
@@ -90,8 +81,8 @@ export default function PortalPage() {
                   onClick={() => setActiveTab(item.label)}
                   style={{
                     display: "flex", alignItems: "center", gap: 14, padding: "1rem", borderRadius: 16, border: "none", cursor: "pointer",
-                    background: isActive ? "rgba(255,255,255,0.9)" : "transparent",
-                    color: isActive ? "var(--blue-primary)" : "#64748b",
+                    background: isActive ? "var(--blue-light)" : "transparent",
+                    color: isActive ? "var(--blue-dark)" : "#64748b",
                     fontWeight: isActive ? 800 : 600,
                     fontSize: "0.95rem",
                     transition: "all 0.2s ease",
@@ -104,6 +95,20 @@ export default function PortalPage() {
                 </button>
               )
             })}
+
+            {/* Main Website Link */}
+            <Link href="/" style={{
+              display: "flex", alignItems: "center", gap: 14, padding: "1rem", borderRadius: 16, border: "none", cursor: "pointer",
+              background: "transparent",
+              color: "#64748b",
+              fontWeight: 600,
+              fontSize: "0.95rem",
+              textDecoration: "none",
+              marginTop: "auto"
+            }}>
+              <Globe size={20} style={{ color: "#94a3b8" }} />
+              Return to Website
+            </Link>
           </nav>
           
           {/* Support Widget */}
@@ -145,21 +150,21 @@ export default function PortalPage() {
           </div>
 
           {/* Top Header */}
-          <header className="desktop-only" style={{ height: 80, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 2.5rem", borderBottom: "1px solid rgba(255,255,255,0.5)" }}>
+          <header className="desktop-only" style={{ height: 80, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 2.5rem", borderBottom: "1px solid rgba(0,0,0,0.05)", background: "var(--bg-secondary)" }}>
             <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "#1e293b" }}>{activeTab}</h1>
             
             <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
               <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
                 <Search size={18} color="#94a3b8" style={{ position: "absolute", left: 16 }} />
-                <input type="text" placeholder="Search..." style={{ padding: "0.7rem 1rem 0.7rem 2.8rem", borderRadius: 999, border: "1px solid rgba(255,255,255,0.8)", background: "rgba(255,255,255,0.5)", outline: "none", fontSize: "0.9rem", width: 250 }} />
+                <input type="text" placeholder="Search..." style={{ padding: "0.7rem 1rem 0.7rem 2.8rem", borderRadius: 999, border: "1px solid rgba(0,0,0,0.1)", background: "#ffffff", outline: "none", fontSize: "0.9rem", width: 250 }} />
               </div>
 
-              <button style={{ position: "relative", background: "rgba(255,255,255,0.8)", width: 44, height: 44, borderRadius: "50%", border: "none", cursor: "pointer", color: "#1e293b", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 10px rgba(0,0,0,0.05)" }}>
+              <button style={{ position: "relative", background: "#ffffff", width: 44, height: 44, borderRadius: "50%", border: "1px solid rgba(0,0,0,0.05)", cursor: "pointer", color: "#1e293b", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 10px rgba(0,0,0,0.02)" }}>
                 <Bell size={20} />
                 <span style={{ position: "absolute", top: 10, right: 12, width: 8, height: 8, background: "#ef4444", borderRadius: "50%" }} />
               </button>
               
-              <div style={{ display: "flex", alignItems: "center", gap: "1rem", cursor: "pointer", background: "rgba(255,255,255,0.8)", padding: "0.4rem 1.5rem 0.4rem 0.4rem", borderRadius: 999, boxShadow: "0 4px 10px rgba(0,0,0,0.05)" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "1rem", cursor: "pointer", background: "#ffffff", padding: "0.4rem 1.5rem 0.4rem 0.4rem", borderRadius: 999, boxShadow: "0 4px 10px rgba(0,0,0,0.02)", border: "1px solid rgba(0,0,0,0.05)" }}>
                 <div style={{ width: 40, height: 40, borderRadius: "50%", background: "var(--gold-primary)", overflow: "hidden", border: "2px solid #fff" }}>
                   <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150" alt="Avatar" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 </div>
@@ -298,7 +303,7 @@ export default function PortalPage() {
                             </div>
                             <div>
                               <p style={{ fontWeight: 700, color: "#1e293b", fontSize: "1rem" }}>{file.name}</p>
-                              <p style={{ fontSize: "0.85rem", color: "#64748b", marginTop: 4 }}>{file.size} • Uploaded just now</p>
+                              <p style={{ fontSize: "0.85rem", color: "#64748b", marginTop: 4 }}>{file.size} • Uploaded {file.date || "just now"}</p>
                             </div>
                           </div>
                           
@@ -317,12 +322,118 @@ export default function PortalPage() {
                   </div>
                 )}
                 
-                {/* Fallback for other tabs */}
-                {(activeTab === "Appointments" || activeTab === "Payments") && (
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", color: "#64748b" }}>
-                    <Loader2 size={48} style={{ marginBottom: "1.5rem", opacity: 0.2 }} />
-                    <h2 style={{ fontSize: "1.5rem", fontWeight: 800, color: "#1e293b" }}>{activeTab}</h2>
-                    <p>This module is currently being updated.</p>
+                {/* APPOINTMENTS TAB */}
+                {activeTab === "Appointments" && (
+                  <div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem" }}>
+                      <h2 style={{ fontSize: "1.8rem", fontWeight: 800, color: "#1e293b" }}>Appointments</h2>
+                      <button style={{ background: "var(--blue-primary)", color: "#fff", padding: "0.8rem 1.5rem", borderRadius: 12, fontWeight: 700, border: "none", cursor: "pointer" }}>Book New Appointment</button>
+                    </div>
+                    
+                    <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#1e293b", marginBottom: "1.5rem" }}>Upcoming</h3>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "3rem" }}>
+                      {[
+                        { date: "Oct 12, 2026", time: "10:30 AM", doctor: "Dr. Sarah Jenkins", type: "Cardiology Consultation", location: "Apollo Hospital, Room 302" },
+                        { date: "Nov 05, 2026", time: "02:00 PM", doctor: "Dr. Michael Chen", type: "Annual Physical Checkup", location: "MedConnect Central Clinic" }
+                      ].map((apt, i) => (
+                        <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1.5rem", background: "#ffffff", borderRadius: 16, border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 4px 15px rgba(0,0,0,0.02)" }}>
+                          <div style={{ display: "flex", gap: "1.5rem", alignItems: "center" }}>
+                            <div style={{ background: "rgba(1,122,175,0.1)", color: "var(--blue-primary)", padding: "1rem", borderRadius: 16, textAlign: "center", minWidth: 80 }}>
+                              <p style={{ fontSize: "0.85rem", fontWeight: 700, textTransform: "uppercase" }}>{apt.date.split(' ')[0]}</p>
+                              <p style={{ fontSize: "1.5rem", fontWeight: 900 }}>{apt.date.split(' ')[1].replace(',', '')}</p>
+                            </div>
+                            <div>
+                              <h4 style={{ fontSize: "1.1rem", fontWeight: 800, color: "#1e293b", marginBottom: 4 }}>{apt.type}</h4>
+                              <p style={{ color: "#64748b", fontSize: "0.95rem", marginBottom: 4 }}>{apt.doctor} • {apt.time}</p>
+                              <p style={{ color: "#94a3b8", fontSize: "0.85rem", display: "flex", alignItems: "center", gap: 4 }}><Clock size={14} /> {apt.location}</p>
+                            </div>
+                          </div>
+                          <div style={{ display: "flex", gap: "1rem" }}>
+                            <button style={{ border: "1px solid rgba(0,0,0,0.1)", background: "transparent", color: "#1e293b", padding: "0.6rem 1.2rem", borderRadius: 8, fontWeight: 600, cursor: "pointer" }}>Reschedule</button>
+                            <button style={{ border: "none", background: "rgba(1,122,175,0.1)", color: "var(--blue-primary)", padding: "0.6rem 1.2rem", borderRadius: 8, fontWeight: 700, cursor: "pointer" }}>Join Video Call</button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#1e293b", marginBottom: "1.5rem" }}>Past Appointments</h3>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1.5rem", background: "rgba(255,255,255,0.5)", borderRadius: 16, border: "1px solid rgba(0,0,0,0.05)" }}>
+                        <div style={{ display: "flex", gap: "1.5rem", alignItems: "center" }}>
+                          <div style={{ background: "#f1f5f9", color: "#64748b", padding: "1rem", borderRadius: 16, textAlign: "center", minWidth: 80 }}>
+                            <p style={{ fontSize: "0.85rem", fontWeight: 700, textTransform: "uppercase" }}>Sep</p>
+                            <p style={{ fontSize: "1.5rem", fontWeight: 900 }}>28</p>
+                          </div>
+                          <div>
+                            <h4 style={{ fontSize: "1.1rem", fontWeight: 800, color: "#64748b", marginBottom: 4 }}>Initial Consultation</h4>
+                            <p style={{ color: "#94a3b8", fontSize: "0.95rem" }}>Dr. Sarah Jenkins</p>
+                          </div>
+                        </div>
+                        <span style={{ padding: "0.4rem 1rem", background: "#f1f5f9", color: "#64748b", borderRadius: 999, fontSize: "0.85rem", fontWeight: 700 }}>Completed</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* PAYMENTS TAB */}
+                {activeTab === "Payments" && (
+                  <div>
+                    <h2 style={{ fontSize: "1.8rem", fontWeight: 800, color: "#1e293b", marginBottom: "2rem" }}>Billing & Payments</h2>
+                    
+                    <div className="grid-3" style={{ marginBottom: "3rem" }}>
+                      <div style={{ background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)", padding: "1.5rem", borderRadius: 24, color: "#fff", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                        <div>
+                          <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.9rem", fontWeight: 600, marginBottom: 8 }}>Total Due</p>
+                          <p style={{ fontSize: "2.5rem", fontWeight: 900 }}>$1,240.00</p>
+                        </div>
+                        <button style={{ background: "var(--gold-primary)", color: "#111", border: "none", padding: "0.8rem", borderRadius: 12, fontWeight: 800, cursor: "pointer", marginTop: "1.5rem" }}>Pay Full Balance</button>
+                      </div>
+                    </div>
+
+                    <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#1e293b", marginBottom: "1.5rem" }}>Pending Invoices</h3>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "3rem" }}>
+                      {[
+                        { invoice: "INV-2026-892", date: "Oct 10, 2026", desc: "Cardiology Consultation & Tests", amount: "$1,240.00" }
+                      ].map((inv, i) => (
+                        <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1.5rem", background: "#ffffff", borderRadius: 16, border: "1px solid rgba(239,68,68,0.2)", borderLeft: "4px solid #ef4444", boxShadow: "0 4px 15px rgba(0,0,0,0.02)" }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
+                            <div style={{ width: 48, height: 48, borderRadius: 12, background: "rgba(239,68,68,0.1)", color: "#ef4444", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                              <FileText size={24} />
+                            </div>
+                            <div>
+                              <h4 style={{ fontSize: "1.1rem", fontWeight: 800, color: "#1e293b", marginBottom: 4 }}>{inv.desc}</h4>
+                              <p style={{ color: "#64748b", fontSize: "0.9rem" }}>{inv.invoice} • Billed on {inv.date}</p>
+                            </div>
+                          </div>
+                          <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
+                            <p style={{ fontSize: "1.2rem", fontWeight: 800, color: "#1e293b" }}>{inv.amount}</p>
+                            <button style={{ background: "#ef4444", color: "#fff", border: "none", padding: "0.6rem 1.2rem", borderRadius: 8, fontWeight: 700, cursor: "pointer" }}>Pay Now</button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#1e293b", marginBottom: "1.5rem" }}>Payment History</h3>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                      {[
+                        { invoice: "INV-2026-442", date: "Sep 28, 2026", desc: "Initial General Consultation", amount: "$150.00", status: "Paid via Visa ending in 4242" },
+                        { invoice: "INV-2026-118", date: "Aug 15, 2026", desc: "MRI Scan (Copay)", amount: "$75.00", status: "Paid via Mastercard ending in 8891" }
+                      ].map((inv, i) => (
+                        <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1.5rem", background: "rgba(255,255,255,0.7)", borderRadius: 16, border: "1px solid rgba(0,0,0,0.05)" }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
+                            <div style={{ width: 48, height: 48, borderRadius: 12, background: "rgba(16,185,129,0.1)", color: "#10b981", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                              <CheckCircle2 size={24} />
+                            </div>
+                            <div>
+                              <h4 style={{ fontSize: "1rem", fontWeight: 700, color: "#1e293b", marginBottom: 4 }}>{inv.desc}</h4>
+                              <p style={{ color: "#64748b", fontSize: "0.85rem", marginBottom: 2 }}>{inv.invoice} • {inv.date}</p>
+                              <p style={{ color: "#94a3b8", fontSize: "0.75rem" }}>{inv.status}</p>
+                            </div>
+                          </div>
+                          <p style={{ fontSize: "1.1rem", fontWeight: 700, color: "#64748b" }}>{inv.amount}</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
               </motion.div>

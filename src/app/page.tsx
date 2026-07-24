@@ -30,11 +30,9 @@ export function Navbar() {
         }}>
 
           {/* Logo */}
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-            <div style={{ width: 40, height: 40, borderRadius: 12, background: "var(--blue-light)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <span style={{ fontWeight: 900, fontSize: "1.2rem", color: "var(--blue-primary)" }}>M</span>
-            </div>
-            <span style={{ fontWeight: 800, fontSize: "1.4rem", color: "var(--blue-dark)" }}>MedConnect</span>
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
+            <img src="/logo-icon.png" alt="MedConnect Global" style={{ height: "38px", width: "auto", objectFit: "contain" }} />
+            <span style={{ fontWeight: 800, fontSize: "1.4rem", color: "var(--blue-dark)", letterSpacing: "-0.5px" }}>MedConnect</span>
           </Link>
 
           {/* Links (Desktop) */}
@@ -145,6 +143,7 @@ export function Navbar() {
 import { Users, Star } from "lucide-react";
 
 import heroImg from "@/assets/hero/image_bg.png";
+import heroImgMobile from "@/assets/hero/image_bg_mobile.png";
 
 // --- HERO SECTION ---
 function Hero() {
@@ -160,6 +159,7 @@ function Hero() {
 
   return (
     <motion.section
+      className="home-hero-section"
       animate={exiting ? { y: "-30vh", opacity: 0, scale: 0.97 } : { y: 0, opacity: 1, scale: 1 }}
       transition={exiting ? { duration: 0.55, ease: [0.76, 0, 0.24, 1] } : { duration: 0 }}
       style={{ position: "relative", overflow: "hidden", padding: "4rem 0 0 0", background: "linear-gradient(135deg, #017aaf 0%, #01587d 100%)", minHeight: "100vh", display: "flex", alignItems: "center" }}
@@ -210,7 +210,7 @@ function Hero() {
           transform: "translate(-50%, -50%)",
           fontSize: "22vw",
           fontWeight: 900,
-          color: "rgba(255, 255, 255, 0.04)",
+          color: "rgba(255, 255, 255, 0.16)",
           whiteSpace: "nowrap",
           pointerEvents: "none",
           zIndex: 0,
@@ -298,21 +298,26 @@ function Hero() {
         >
           {/* Shimmer ring behind doctor */}
           <motion.div
+            className="hero-shimmer-ring"
             animate={{ scale: [1, 1.08, 1], opacity: [0.3, 0.6, 0.3] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            style={{ position: "absolute", bottom: "5%", right: "10%", width: "60%", height: "60%", borderRadius: "50%", border: "2px solid rgba(218,168,55,0.3)", pointerEvents: "none" }}
+            style={{ position: "absolute", borderRadius: "50%", border: "2px solid rgba(218,168,55,0.3)", pointerEvents: "none" }}
           />
 
-          <img
-            src={heroImg.src}
-            alt="Doctor"
-            style={{ width: "auto", height: "100%", objectFit: "contain", objectPosition: "bottom left", display: "block", transform: "scale(1.2)", transformOrigin: "bottom right" }}
-          />
+          <picture>
+            <source media="(max-width: 1000px)" srcSet={heroImgMobile.src} />
+            <img
+              src={heroImg.src}
+              alt="Doctor"
+              className="hero-doctor-img"
+            />
+          </picture>
         </motion.div>
       </div>
 
       {/* Scroll Down Indicator */}
       <motion.div
+        className="mobile-hide"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1.2 }}
@@ -470,10 +475,8 @@ export function Footer({ hideCTA = false }: { hideCTA?: boolean }) {
           {/* Brand Col */}
           <div style={{ gridColumn: "1 / -1", maxWidth: 300 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: "1.5rem" }}>
-              <div style={{ width: 36, height: 36, borderRadius: 10, background: "var(--blue-primary)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <span style={{ fontWeight: 900, fontSize: "1.1rem", color: "#fff" }}>M</span>
-              </div>
-              <span style={{ fontWeight: 800, fontSize: "1.4rem", color: "var(--blue-dark)" }}>MedConnect</span>
+              <img src="/logo-icon.png" alt="MedConnect Global" style={{ height: "44px", width: "auto", objectFit: "contain" }} />
+              <span style={{ fontWeight: 800, fontSize: "1.5rem", color: "var(--blue-dark)", letterSpacing: "-0.5px" }}>MedConnect</span>
             </div>
             <p style={{ color: "var(--text-muted)", fontSize: "0.95rem", lineHeight: 1.7, marginBottom: "1.5rem" }}>
               Compassionate healthcare, trusted specialists, and modern medical care for every stage of life.
@@ -570,15 +573,15 @@ function FounderSection() {
             A Commitment to <span style={{ color: "#017aaf" }}>Global Care</span>
           </h2>
           <p style={{ color: "var(--text-muted)", fontSize: "1.1rem", lineHeight: 1.7, marginBottom: "1.5rem" }}>
-            MedConnect Global was founded on a simple but powerful premise: everyone deserves access to world-class healthcare, regardless of where they live.
+            A traditional Catholic family from Alleppey, Kerala, the Malayil brothers have built a legacy spanning 33+ years across the GCC and beyond — from medical clinics and pharmacies to manufacturing and finance.
           </p>
           <p style={{ color: "var(--text-muted)", fontSize: "1.1rem", lineHeight: 1.7, marginBottom: "2.5rem" }}>
-            Our founder's vision has built a seamless bridge between affordability and exceptional care, partnering with top internationally accredited hospitals to ensure your journey to wellness is our absolute priority.
+            As the youngest brother and Chairman & CEO of Malayil Family Business since 1994, Mr. Jolly Malayil has driven an extraordinary expansion across 20+ businesses and 7 major sectors. MedConnect Global is his vision to bring that same excellence and family spirit to global healthcare — making world-class medical care accessible to all.
           </p>
 
           <div style={{ marginBottom: "2rem" }}>
             <h3 style={{ fontSize: "1.4rem", fontWeight: 800, color: "var(--blue-dark)", marginBottom: "0.25rem" }}>Jolly Malayil</h3>
-            <p style={{ color: "var(--blue-primary)", fontWeight: 700, fontSize: "0.95rem" }}>CEO & Chairman</p>
+            <p style={{ color: "var(--blue-primary)", fontWeight: 700, fontSize: "0.95rem" }}>Chairman & CEO — Malayil Family Business, Neil Group of Companies & MedConnect Global</p>
           </div>
 
           <Link href="/founder" className="med-button-primary" style={{ display: "inline-flex", background: "#017aaf", color: "#ffffff" }}>

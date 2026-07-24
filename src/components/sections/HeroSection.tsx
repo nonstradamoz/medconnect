@@ -30,7 +30,7 @@ export function HeroSection() {
         pointerEvents: "none",
       }} />
 
-      <div className="container-wide" style={{
+      <div className="container-wide hero-grid" style={{
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
         alignItems: "center",
@@ -104,9 +104,9 @@ export function HeroSection() {
         </div>
 
         {/* Right: Doctor Image */}
-        <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "flex-end" }}>
-          {/* Floating trust badges */}
-          <div style={{
+        <div className="hero-img-col" style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "flex-end" }}>
+          {/* Floating trust badges - hidden on mobile */}
+          <div className="hero-badge" style={{
             position: "absolute", top: "10%", left: "-8%",
             background: "#ffffff",
             borderRadius: "16px",
@@ -124,7 +124,7 @@ export function HeroSection() {
             </div>
           </div>
 
-          <div style={{
+          <div className="hero-badge" style={{
             position: "absolute", top: "40%", right: "-5%",
             background: "#ffffff",
             borderRadius: "16px",
@@ -142,7 +142,7 @@ export function HeroSection() {
             </div>
           </div>
 
-          <div style={{
+          <div className="hero-badge" style={{
             position: "absolute", bottom: "25%", left: "-5%",
             background: "#ffffff",
             borderRadius: "16px",
@@ -152,7 +152,7 @@ export function HeroSection() {
             zIndex: 2,
           }}>
             <div style={{ display: "flex", gap: "2px" }}>
-              {[1,2,3,4,5].map(i => <Star key={i} size={14} fill="#FFC107" style={{ color: "#FFC107" }} />)}
+              {[1, 2, 3, 4, 5].map(i => <Star key={i} size={14} fill="#FFC107" style={{ color: "#FFC107" }} />)}
             </div>
             <div>
               <p style={{ fontSize: "0.8rem", fontWeight: 800, color: "#0F172A" }}>4.9 / 5.0</p>
@@ -197,8 +197,28 @@ export function HeroSection() {
 
       <style>{`
         @media (max-width: 768px) {
-          .hero-grid { grid-template-columns: 1fr !important; }
-          .hero-img { display: none; }
+          .hero-grid {
+            grid-template-columns: 1fr !important;
+            padding-top: 3rem !important;
+            padding-bottom: 4rem !important;
+          }
+          .hero-img-col {
+            width: 100%;
+            margin-top: 4rem;
+          }
+          .hero-img-col > div:last-child {
+            max-width: 280px !important;
+            max-height: 300px;
+            transform: translateY(150px);
+          }
+          .hero-img-col > div:last-child img {
+            max-height: 300px;
+            object-fit: cover;
+            object-position: bottom center;
+          }
+          .hero-badge {
+            display: none !important;
+          }
         }
       `}</style>
     </section>
