@@ -1,5 +1,5 @@
 "use client";
-import { ArrowRight, ArrowUpRight, CheckCircle2, ChevronRight, Mail, MapPin, Phone, Plus } from "lucide-react";
+import { ArrowRight, ArrowUpRight, CheckCircle2, ChevronRight, ChevronDown, Mail, MapPin, Phone, Plus } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
@@ -50,7 +50,7 @@ export function Navbar() {
                 <Link key={label} href={path} style={{
                   fontWeight: 600,
                   fontSize: "0.95rem",
-                  color: isActive ? "var(--blue-primary)" : "var(--text-dark)",
+                  color: isActive ? "var(--blue-dark)" : "var(--text-dark)",
                   textDecoration: "none",
                   background: isActive ? "var(--blue-light)" : "transparent",
                   padding: "0.4rem 1rem",
@@ -148,8 +148,22 @@ import heroImg from "@/assets/hero/image_bg.png";
 
 // --- HERO SECTION ---
 function Hero() {
+  const [exiting, setExiting] = useState(false);
+
+  const handleExplore = () => {
+    setExiting(true);
+    setTimeout(() => {
+      window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+      setTimeout(() => setExiting(false), 800);
+    }, 500);
+  };
+
   return (
-    <section style={{ position: "relative", overflow: "hidden", padding: "4rem 0 0 0", background: "linear-gradient(135deg, #017aaf 0%, #01587d 100%)", minHeight: "100vh", display: "flex", alignItems: "center" }}>
+    <motion.section
+      animate={exiting ? { y: "-30vh", opacity: 0, scale: 0.97 } : { y: 0, opacity: 1, scale: 1 }}
+      transition={exiting ? { duration: 0.55, ease: [0.76, 0, 0.24, 1] } : { duration: 0 }}
+      style={{ position: "relative", overflow: "hidden", padding: "4rem 0 0 0", background: "linear-gradient(135deg, #017aaf 0%, #01587d 100%)", minHeight: "100vh", display: "flex", alignItems: "center" }}
+    >
 
       {/* Animated Gradient Orbs */}
       <motion.div
@@ -295,9 +309,27 @@ function Hero() {
             style={{ width: "auto", height: "100%", objectFit: "contain", objectPosition: "bottom left", display: "block", transform: "scale(1.2)", transformOrigin: "bottom right" }}
           />
         </motion.div>
-
       </div>
-    </section>
+
+      {/* Scroll Down Indicator */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.2 }}
+        style={{ position: "absolute", bottom: "30px", left: "50%", transform: "translateX(-50%)", cursor: "pointer", zIndex: 50, display: "flex", flexDirection: "column", alignItems: "center", color: "#ffffff" }}
+        onClick={handleExplore}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <span style={{ fontSize: "0.85rem", fontWeight: 700, letterSpacing: "0.1em", marginBottom: "0.5rem" }}>EXPLORE</span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ChevronDown size={24} />
+        </motion.div>
+      </motion.div>
+    </motion.section>
   );
 }
 
@@ -310,7 +342,7 @@ function ServicesPreview() {
   ];
 
   return (
-    <section style={{ padding: "6rem 0", background: "var(--bg-secondary)" }}>
+    <section id="explore" style={{ padding: "6rem 0", background: "var(--bg-secondary)" }}>
       <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 1.5rem", textAlign: "center" }}>
 
         <div style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", marginBottom: "4rem" }}>
