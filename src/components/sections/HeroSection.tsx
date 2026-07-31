@@ -1,12 +1,32 @@
 "use client";
 import Link from "next/link";
 import { ArrowRight, Shield, Award, Star } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export function HeroSection() {
+  const { scrollYProgress } = useScroll();
+  const yImage = useTransform(scrollYProgress, [0, 1], [0, 150]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 70, damping: 15 } },
+  };
+
   return (
     <section
       style={{
-        background: "#FFC107",
+        background: "linear-gradient(135deg, #017aaf 0%, #0c4a6e 100%)",
         position: "relative",
         overflow: "hidden",
         minHeight: "88vh",
@@ -15,20 +35,28 @@ export function HeroSection() {
       }}
     >
       {/* Decorative circles */}
-      <div style={{
-        position: "absolute", top: "-100px", right: "20%",
-        width: "350px", height: "350px",
-        borderRadius: "50%",
-        background: "rgba(255,255,255,0.12)",
-        pointerEvents: "none",
-      }} />
-      <div style={{
-        position: "absolute", bottom: "60px", left: "10%",
-        width: "200px", height: "200px",
-        borderRadius: "50%",
-        background: "rgba(15,23,42,0.07)",
-        pointerEvents: "none",
-      }} />
+      <motion.div
+        animate={{ y: [0, -30, 0], rotate: [0, 10, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        style={{
+          position: "absolute", top: "-100px", right: "20%",
+          width: "350px", height: "350px",
+          borderRadius: "50%",
+          background: "rgba(255,255,255,0.05)",
+          pointerEvents: "none",
+        }}
+      />
+      <motion.div
+        animate={{ y: [0, 40, 0], x: [0, -20, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        style={{
+          position: "absolute", bottom: "60px", left: "10%",
+          width: "200px", height: "200px",
+          borderRadius: "50%",
+          background: "rgba(0,0,0,0.1)",
+          pointerEvents: "none",
+        }}
+      />
 
       <div className="container-wide hero-grid" style={{
         display: "grid",
@@ -41,79 +69,113 @@ export function HeroSection() {
         zIndex: 1,
       }}>
         {/* Left: Text Content */}
-        <div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {/* Badge */}
-          <div style={{
+          <motion.div variants={itemVariants} style={{
             display: "inline-flex", alignItems: "center", gap: "8px",
-            background: "rgba(15,23,42,0.1)", borderRadius: "9999px",
+            background: "rgba(255,255,255,0.15)", borderRadius: "9999px",
             padding: "0.35rem 1rem", marginBottom: "1.5rem"
           }}>
-            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#0F172A", display: "inline-block" }} />
-            <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "#0F172A", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#daa837", display: "inline-block" }} />
+            <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "#ffffff", letterSpacing: "0.05em", textTransform: "uppercase" }}>
               what we do...
             </span>
-          </div>
+          </motion.div>
 
-          <h1 style={{
+          <motion.h1 variants={itemVariants} style={{
             fontSize: "clamp(2.4rem, 4.5vw, 3.75rem)",
             fontWeight: 800,
-            color: "#0F172A",
+            color: "#ffffff",
             lineHeight: 1.1,
             marginBottom: "1.5rem",
           }}>
             Your trusted healthcare guide to{" "}
-            <span style={{ textDecoration: "underline", textDecorationColor: "rgba(15,23,42,0.3)", textDecorationThickness: "3px" }}>
+            <span style={{ textDecoration: "underline", textDecorationColor: "#daa837", textDecorationThickness: "4px" }}>
               India and UAE
             </span>
-          </h1>
+          </motion.h1>
 
-          <p style={{
+          <motion.p variants={itemVariants} style={{
             fontSize: "1.1rem",
-            color: "#1E293B",
+            color: "rgba(255,255,255,0.85)",
             lineHeight: 1.75,
             marginBottom: "2.5rem",
             maxWidth: "520px",
           }}>
             <strong>Your Cure, Our Care.</strong> India's leading international and NRI patients services company. Our consultant panel doctors identified hospitals in Mumbai, Delhi and Kerala.
-          </p>
+          </motion.p>
 
-          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginBottom: "3rem" }}>
-            <Link href="/contact" className="btn-dark">
-              Contact Us <ArrowRight size={16} />
+          <motion.div variants={itemVariants} style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginBottom: "3rem" }}>
+            <Link href="/contact" style={{ 
+              background: "#daa837", color: "#111111", 
+              fontWeight: 800, padding: "0.9rem 2rem", borderRadius: 999,
+              display: "inline-flex", alignItems: "center", gap: 8, textDecoration: "none",
+              boxShadow: "0 10px 30px rgba(0,0,0,0.15)", transition: "transform 0.2s"
+            }}>
+              Contact Us <ArrowRight size={18} strokeWidth={3} />
             </Link>
-            <Link href="/services" className="btn-outline-white">
+            <Link href="/services" style={{ 
+              background: "rgba(255,255,255,0.1)", color: "#ffffff", border: "1.5px solid rgba(255,255,255,0.2)",
+              fontWeight: 700, padding: "0.9rem 2rem", borderRadius: 999,
+              display: "inline-flex", alignItems: "center", textDecoration: "none",
+              backdropFilter: "blur(10px)", transition: "background 0.2s"
+            }}>
               Explore Treatments
             </Link>
-          </div>
+          </motion.div>
 
           {/* Stats */}
-          <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
+          <motion.div variants={itemVariants} style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
             {[
               { value: "250+", label: "Specialists" },
               { value: "150+", label: "Hospitals" },
               { value: "20+", label: "Countries" },
               { value: "98%", label: "Satisfaction" },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <p style={{ fontSize: "1.8rem", fontWeight: 800, color: "#0F172A", lineHeight: 1 }}>{stat.value}</p>
-                <p style={{ fontSize: "0.8rem", fontWeight: 600, color: "#1E293B", marginTop: "2px" }}>{stat.label}</p>
-              </div>
+            ].map((stat, idx) => (
+              <motion.div 
+                key={stat.label}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 + idx * 0.1, type: "spring" }}
+              >
+                <p style={{ fontSize: "1.8rem", fontWeight: 800, color: "#ffffff", lineHeight: 1 }}>{stat.value}</p>
+                <p style={{ fontSize: "0.85rem", fontWeight: 600, color: "rgba(255,255,255,0.7)", marginTop: "4px" }}>{stat.label}</p>
+              </motion.div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Right: Doctor Image */}
-        <div className="hero-img-col" style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "flex-end" }}>
+        <motion.div 
+          className="hero-img-col" 
+          style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "flex-end", y: yImage }}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           {/* Floating trust badges - hidden on mobile */}
-          <div className="hero-badge" style={{
-            position: "absolute", top: "10%", left: "-8%",
-            background: "#ffffff",
-            borderRadius: "16px",
-            padding: "0.9rem 1.2rem",
-            boxShadow: "0 10px 40px rgba(15,23,42,0.15)",
-            display: "flex", alignItems: "center", gap: "10px",
-            zIndex: 2,
-          }}>
+          <motion.div 
+            className="hero-badge" 
+            initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ delay: 0.6, type: "spring", stiffness: 100 }}
+            whileHover={{ scale: 1.05, y: -5 }}
+            style={{
+              position: "absolute", top: "10%", left: "-8%",
+              background: "#ffffff",
+              borderRadius: "16px",
+              padding: "0.9rem 1.2rem",
+              boxShadow: "0 10px 40px rgba(15,23,42,0.15)",
+              display: "flex", alignItems: "center", gap: "10px",
+              zIndex: 2,
+              cursor: "pointer"
+            }}>
             <div style={{ background: "#FFF3CD", borderRadius: "10px", padding: "8px" }}>
               <Award size={20} style={{ color: "#E5AC06" }} />
             </div>
@@ -121,17 +183,24 @@ export function HeroSection() {
               <p style={{ fontSize: "0.8rem", fontWeight: 800, color: "#0F172A" }}>JCI Accredited</p>
               <p style={{ fontSize: "0.7rem", color: "#64748B" }}>Partner Hospitals</p>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="hero-badge" style={{
-            position: "absolute", top: "40%", right: "-5%",
-            background: "#ffffff",
-            borderRadius: "16px",
-            padding: "0.9rem 1.2rem",
-            boxShadow: "0 10px 40px rgba(15,23,42,0.15)",
-            display: "flex", alignItems: "center", gap: "10px",
-            zIndex: 2,
-          }}>
+          <motion.div 
+            className="hero-badge" 
+            initial={{ opacity: 0, scale: 0.5, rotate: 10 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ delay: 0.8, type: "spring", stiffness: 100 }}
+            whileHover={{ scale: 1.05, y: -5 }}
+            style={{
+              position: "absolute", top: "40%", right: "-5%",
+              background: "#ffffff",
+              borderRadius: "16px",
+              padding: "0.9rem 1.2rem",
+              boxShadow: "0 10px 40px rgba(15,23,42,0.15)",
+              display: "flex", alignItems: "center", gap: "10px",
+              zIndex: 2,
+              cursor: "pointer"
+            }}>
             <div style={{ background: "#F0FDF4", borderRadius: "10px", padding: "8px" }}>
               <Shield size={20} style={{ color: "#16A34A" }} />
             </div>
@@ -139,17 +208,24 @@ export function HeroSection() {
               <p style={{ fontSize: "0.8rem", fontWeight: 800, color: "#0F172A" }}>HIPAA Secure</p>
               <p style={{ fontSize: "0.7rem", color: "#64748B" }}>Your data, protected</p>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="hero-badge" style={{
-            position: "absolute", bottom: "25%", left: "-5%",
-            background: "#ffffff",
-            borderRadius: "16px",
-            padding: "0.9rem 1.2rem",
-            boxShadow: "0 10px 40px rgba(15,23,42,0.15)",
-            display: "flex", alignItems: "center", gap: "10px",
-            zIndex: 2,
-          }}>
+          <motion.div 
+            className="hero-badge" 
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, type: "spring", stiffness: 100 }}
+            whileHover={{ scale: 1.05, y: -5 }}
+            style={{
+              position: "absolute", bottom: "25%", left: "-5%",
+              background: "#ffffff",
+              borderRadius: "16px",
+              padding: "0.9rem 1.2rem",
+              boxShadow: "0 10px 40px rgba(15,23,42,0.15)",
+              display: "flex", alignItems: "center", gap: "10px",
+              zIndex: 2,
+              cursor: "pointer"
+            }}>
             <div style={{ display: "flex", gap: "2px" }}>
               {[1, 2, 3, 4, 5].map(i => <Star key={i} size={14} fill="#FFC107" style={{ color: "#FFC107" }} />)}
             </div>
@@ -157,7 +233,7 @@ export function HeroSection() {
               <p style={{ fontSize: "0.8rem", fontWeight: 800, color: "#0F172A" }}>4.9 / 5.0</p>
               <p style={{ fontSize: "0.7rem", color: "#64748B" }}>Patient Rating</p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Doctor Image */}
           <div style={{
@@ -167,7 +243,10 @@ export function HeroSection() {
             overflow: "hidden",
             position: "relative",
           }}>
-            <img
+            <motion.img
+              initial={{ scale: 1.1 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
               src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=600&h=700"
               alt="Medical specialist"
               style={{
@@ -178,7 +257,7 @@ export function HeroSection() {
               }}
             />
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Wave Bottom Divider */}

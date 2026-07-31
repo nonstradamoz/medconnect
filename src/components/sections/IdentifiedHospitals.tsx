@@ -34,7 +34,12 @@ export function IdentifiedHospitals() {
 
       <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 1.5rem", position: "relative", zIndex: 1 }}>
         <div style={{ textAlign: "center", marginBottom: "5rem" }}>
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8, ease: "easeOut" }}>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 30 }} 
+            whileInView={{ opacity: 1, scale: 1, y: 0 }} 
+            viewport={{ once: true, margin: "-100px" }} 
+            transition={{ type: "spring", stiffness: 70, damping: 20 }}
+          >
             <div style={{ 
               display: "inline-flex", 
               alignItems: "center", 
@@ -67,10 +72,10 @@ export function IdentifiedHospitals() {
           {locations.map((loc, i) => (
             <Link key={i} href={`/hospitals/${loc.slug}`} style={{ textDecoration: "none", display: "block" }}>
               <motion.div
-                initial={{ opacity: 0, y: 40 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
+                initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50, scale: 0.95 }} 
+                whileInView={{ opacity: 1, x: 0, scale: 1 }} 
                 viewport={{ once: true, margin: "-100px" }} 
-                transition={{ duration: 0.7, delay: i * 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+                transition={{ type: "spring", stiffness: 60, damping: 15, delay: i * 0.1 }}
                 whileHover="hover"
                 style={{
                   position: "relative",
@@ -78,7 +83,8 @@ export function IdentifiedHospitals() {
                   overflow: "hidden",
                   height: 480,
                   cursor: "pointer",
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.4)"
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
+                  border: "1px solid rgba(255,255,255,0.05)"
                 }}
               >
                 <motion.div 
@@ -96,7 +102,7 @@ export function IdentifiedHospitals() {
                 
                 <div style={{ position: "absolute", top: 20, right: 20 }}>
                   <motion.div 
-                    variants={{ hover: { background: "#daa837", color: "#111", borderColor: "#daa837" } }}
+                    variants={{ hover: { background: "#daa837", color: "#111", borderColor: "#daa837", scale: 1.05 } }}
                     transition={{ duration: 0.3 }}
                     style={{ 
                       background: "rgba(0,0,0,0.5)", 
@@ -117,7 +123,7 @@ export function IdentifiedHospitals() {
                 </div>
 
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "2rem" }}>
-                  <motion.div variants={{ hover: { y: -5 } }} transition={{ duration: 0.4 }}>
+                  <motion.div variants={{ hover: { y: -8 } }} transition={{ duration: 0.4 }}>
                     <h3 style={{ fontWeight: 800, fontSize: "2.2rem", color: "#ffffff", marginBottom: "0.5rem", letterSpacing: "-0.5px" }}>{loc.name}</h3>
                     <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "1rem", lineHeight: 1.6, marginBottom: "1.5rem" }}>
                       {loc.desc}

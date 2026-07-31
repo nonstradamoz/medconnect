@@ -1,16 +1,17 @@
 "use client";
 import { Search, Users, Zap } from "lucide-react";
+import { motion } from "framer-motion";
 
 const HexIcon = ({ icon: Icon }: { icon: React.ElementType }) => (
   <div style={{ position: "relative", width: 70, height: 70, margin: "0 auto 1.25rem" }}>
     {/* Hexagon background */}
     <div style={{
       width: 70, height: 70,
-      background: "#FFC107",
+      background: "#017aaf",
       clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
       display: "flex", alignItems: "center", justifyContent: "center",
     }}>
-      <Icon size={28} style={{ color: "#0F172A" }} />
+      <Icon size={28} style={{ color: "#ffffff" }} />
     </div>
   </div>
 );
@@ -34,15 +35,36 @@ const cards = [
 ];
 
 export function WhyTrustUs() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.9, y: 30 },
+    visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 12 } },
+  };
+
   return (
-    <section style={{ background: "#ffffff", padding: "6rem 0" }}>
+    <section style={{ background: "#ffffff", padding: "6rem 0", overflow: "hidden" }}>
       <div className="container-wide">
         {/* Heading */}
-        <div style={{ textAlign: "center", marginBottom: "4rem" }}>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          style={{ textAlign: "center", marginBottom: "4rem" }}
+        >
           <span style={{
             display: "inline-block",
-            background: "#FFF3CD",
-            color: "#B45309",
+            background: "#e0f2fe",
+            color: "#0369a1",
             fontWeight: 700,
             fontSize: "0.8rem",
             textTransform: "uppercase",
@@ -59,25 +81,33 @@ export function WhyTrustUs() {
           <p className="section-subheading" style={{ margin: "0 auto" }}>
             We don't just arrange treatments — we personally guide every patient from their first consultation to complete recovery.
           </p>
-        </div>
+        </motion.div>
 
         {/* Cards */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: "2rem",
-        }}>
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "2rem",
+          }}
+        >
           {cards.map((card, i) => (
-            <div
+            <motion.div
               key={i}
-              className="card-hover"
+              variants={itemVariants}
+              whileHover={{ scale: 1.03, translateY: -8, boxShadow: "0 20px 40px rgba(0,0,0,0.08)" }}
               style={{
                 background: "#ffffff",
                 border: "1.5px solid #E2E8F0",
                 borderRadius: "20px",
                 padding: "2.5rem 2rem",
                 textAlign: "center",
-                cursor: "default",
+                cursor: "pointer",
+                transition: "box-shadow 0.3s ease, border 0.3s ease",
               }}
             >
               <HexIcon icon={card.icon} />
@@ -87,9 +117,9 @@ export function WhyTrustUs() {
               <p style={{ fontSize: "0.9rem", color: "#64748B", lineHeight: 1.7 }}>
                 {card.desc}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

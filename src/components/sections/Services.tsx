@@ -1,5 +1,5 @@
 "use client";
-import { ArrowRight, Activity, Bone, Eye, HeartPulse, Baby, Sparkles, Plus } from "lucide-react";
+import { ArrowRight, Activity, Bone, Eye, HeartPulse, Baby, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -13,12 +13,32 @@ const services = [
 ];
 
 export function Services() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 80, damping: 15 } },
+  };
+
   return (
-    <section style={{ padding: "6rem 0", background: "var(--bg-main)" }}>
+    <section style={{ padding: "6rem 0", background: "var(--bg-main)", overflow: "hidden" }}>
       <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 1.5rem" }}>
         
         <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }} 
+            whileInView={{ opacity: 1, scale: 1 }} 
+            viewport={{ once: true, margin: "-100px" }} 
+            transition={{ type: "spring", duration: 0.8 }}
+          >
             <div className="med-badge" style={{ marginBottom: "1.5rem" }}>
               MEDICAL SERVICES
             </div>
@@ -28,18 +48,23 @@ export function Services() {
           </motion.div>
         </div>
 
-        <div className="grid-3">
+        <motion.div 
+          className="grid-3"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {services.map((s, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              variants={itemVariants}
+              whileHover={{ y: -10, boxShadow: "0 20px 40px rgba(0,0,0,0.06)" }}
               className="med-card"
               style={{
                 padding: "2.5rem",
-                display: "flex", flexDirection: "column"
+                display: "flex", flexDirection: "column",
+                transition: "box-shadow 0.3s ease",
               }}
             >
               <div style={{
@@ -63,7 +88,7 @@ export function Services() {
               </Link>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
