@@ -1,5 +1,5 @@
 "use client";
-import { Plus, Minus, X } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -12,75 +12,45 @@ const faqs = [
 ];
 
 export function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0); // First one open by default
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section style={{ padding: "6rem 0", background: "var(--bg-main)" }}>
+    <section style={{ padding: "8rem 0", background: "var(--bg-secondary)", position: "relative", overflow: "hidden" }}>
+      <div style={{ position: "absolute", top: "50%", right: "-10%", transform: "translateY(-50%)", width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle, rgba(1,122,175,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
+
       <div style={{ maxWidth: 800, margin: "0 auto", padding: "0 1.5rem" }}>
-        
-        <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-          <div className="med-badge" style={{ marginBottom: "1.5rem" }}>
-            FAQ
-          </div>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.7 }} style={{ textAlign: "center", marginBottom: "4.5rem" }}>
+          <div className="med-badge" style={{ marginBottom: "1.5rem" }}>FAQ</div>
           <h2 className="med-heading" style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)" }}>
             Have Questions?<br /><span className="med-heading-highlight">We Have Answers.</span>
           </h2>
-        </div>
+        </motion.div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
           {faqs.map((faq, i) => {
             const isOpen = openIndex === i;
             return (
-              <div 
-                key={i} 
-                style={{ 
-                  borderBottom: "1px solid #f1f5f9", 
-                  paddingBottom: "1.5rem",
-                  paddingTop: i === 0 ? 0 : "1.5rem"
-                }}
-              >
-                <button 
-                  onClick={() => setOpenIndex(isOpen ? null : i)}
-                  style={{ 
-                    width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", 
-                    background: "none", border: "none", cursor: "pointer", textAlign: "left",
-                    padding: 0
-                  }}
-                >
-                  <h3 style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--blue-dark)", paddingRight: "2rem" }}>
-                    {faq.q}
-                  </h3>
-                  <div style={{ 
-                    width: 32, height: 32, borderRadius: "50%", 
-                    background: "var(--blue-light)", color: "var(--blue-primary)", 
-                    display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-                    transition: "all 0.3s ease",
-                    transform: isOpen ? "rotate(180deg)" : "rotate(0deg)"
-                  }}>
-                    {isOpen ? <X size={18} strokeWidth={2.5} /> : <Plus size={18} strokeWidth={2.5} />}
+              <motion.div key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-40px" }} transition={{ duration: 0.5, delay: i * 0.08 }}
+                style={{ background: isOpen ? "rgba(1,122,175,0.08)" : "var(--bg-card)", border: `1px solid ${isOpen ? "rgba(1,122,175,0.3)" : "rgba(255,255,255,0.06)"}`, borderRadius: 16, overflow: "hidden", transition: "background 0.3s, border-color 0.3s" }}>
+                <button onClick={() => setOpenIndex(isOpen ? null : i)} style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", background: "none", border: "none", cursor: "pointer", textAlign: "left", padding: "1.5rem 1.75rem" }}>
+                  <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: isOpen ? "#ffffff" : "rgba(255,255,255,0.85)", paddingRight: "2rem", transition: "color 0.2s" }}>{faq.q}</h3>
+                  <div style={{ width: 32, height: 32, borderRadius: "50%", background: isOpen ? "rgba(1,122,175,0.3)" : "rgba(255,255,255,0.06)", border: `1px solid ${isOpen ? "rgba(1,122,175,0.5)" : "rgba(255,255,255,0.1)"}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "all 0.3s ease", color: isOpen ? "#22c7ff" : "rgba(255,255,255,0.5)" }}>
+                    <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
+                      {isOpen ? <Minus size={16} strokeWidth={2.5} /> : <Plus size={16} strokeWidth={2.5} />}
+                    </motion.div>
                   </div>
                 </button>
-                
                 <AnimatePresence>
                   {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      style={{ overflow: "hidden" }}
-                    >
-                      <p style={{ color: "var(--text-muted)", fontSize: "1rem", lineHeight: 1.7, marginTop: "1rem", paddingRight: "3rem" }}>
-                        {faq.a}
-                      </p>
+                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }} style={{ overflow: "hidden" }}>
+                      <p style={{ color: "var(--text-muted)", fontSize: "0.975rem", lineHeight: 1.8, padding: "0 1.75rem 1.75rem", paddingRight: "4rem" }}>{faq.a}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
-            )
+              </motion.div>
+            );
           })}
         </div>
-
       </div>
     </section>
   );
