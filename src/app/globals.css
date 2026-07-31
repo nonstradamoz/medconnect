@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
 
 :root {
   --blue-primary: #017aaf;
@@ -27,7 +27,7 @@
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    font-family: var(--font-plus-jakarta-sans), 'Plus Jakarta Sans', -apple-system, sans-serif;
     background: var(--bg-main);
     color: var(--text-dark);
     overflow-x: hidden;
